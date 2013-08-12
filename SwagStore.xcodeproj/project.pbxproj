@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ED3CCF4717B2F4ED00022703 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED3CCF4617B2F4ED00022703 /* FacebookSDK.framework */; };
+		8FF3C19F17B98539001D63C3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF3C19E17B98539001D63C3 /* FacebookSDK.framework */; };
+		8FF3C1A017B98539001D63C3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF3C19E17B98539001D63C3 /* FacebookSDK.framework */; };
 		ED3CCF4A17B2F73700022703 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3CCF4917B2F73700022703 /* ItemCell.m */; };
 		ED5A384917B05DFB00F87E77 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5A384817B05DFB00F87E77 /* Foundation.framework */; };
 		ED5A384B17B05DFB00F87E77 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5A384A17B05DFB00F87E77 /* CoreGraphics.framework */; };
@@ -55,7 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		ED3CCF4617B2F4ED00022703 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		8FF3C19E17B98539001D63C3 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		ED3CCF4817B2F73700022703 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
 		ED3CCF4917B2F73700022703 /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
 		ED5A384517B05DFB00F87E77 /* SwagStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwagStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +120,7 @@
 				EDCF5F1417B32D0500215A0E /* CFNetwork.framework in Frameworks */,
 				EDCF5F1217B32CFD00215A0E /* AudioToolbox.framework in Frameworks */,
 				ED5A384B17B05DFB00F87E77 /* CoreGraphics.framework in Frameworks */,
-				ED3CCF4717B2F4ED00022703 /* FacebookSDK.framework in Frameworks */,
+				8FF3C19F17B98539001D63C3 /* FacebookSDK.framework in Frameworks */,
 				ED5A384D17B05DFB00F87E77 /* UIKit.framework in Frameworks */,
 				ED5A384917B05DFB00F87E77 /* Foundation.framework in Frameworks */,
 				EDCF5F1017B32CA000215A0E /* Parse.framework in Frameworks */,
@@ -131,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED5A386217B05DFB00F87E77 /* XCTest.framework in Frameworks */,
+				8FF3C1A017B98539001D63C3 /* FacebookSDK.framework in Frameworks */,
 				ED5A386417B05DFB00F87E77 /* UIKit.framework in Frameworks */,
 				ED5A386317B05DFB00F87E77 /* Foundation.framework in Frameworks */,
 			);
@@ -171,7 +173,7 @@
 				EDCF5F1317B32D0500215A0E /* CFNetwork.framework */,
 				EDCF5F1117B32CFD00215A0E /* AudioToolbox.framework */,
 				EDCF5F0F17B32CA000215A0E /* Parse.framework */,
-				ED3CCF4617B2F4ED00022703 /* FacebookSDK.framework */,
+				8FF3C19E17B98539001D63C3 /* FacebookSDK.framework */,
 				ED5A384817B05DFB00F87E77 /* Foundation.framework */,
 				ED5A384A17B05DFB00F87E77 /* CoreGraphics.framework */,
 				ED5A384C17B05DFB00F87E77 /* UIKit.framework */,
@@ -502,6 +504,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Xcode5-DP3.app/Contents/Developer/Library/Frameworks",
+					"$(SRCROOT)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SwagStore/SwagStore-Prefix.pch";
@@ -524,6 +527,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Xcode5-DP3.app/Contents/Developer/Library/Frameworks",
+					"$(SRCROOT)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SwagStore/SwagStore-Prefix.pch";
