@@ -23,7 +23,7 @@
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>FacebookAppID</key>
-	<string>150345341836491</string>
+	<string>462857150476058</string>
 	<key>FacebookDisplayName</key>
 	<string>SwagStore</string>
 	<key>CFBundleURLTypes</key>
@@ -31,7 +31,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb150345341836491</string>
+				<string>fb462857150476058</string>
 			</array>
 		</dict>
 	</array>
