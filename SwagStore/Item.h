@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Parse/Parse.h>
 
 @interface Item : NSObject
 
-- (id)initWithPFObject:(PFObject *)object;
+- (id)initWithNSDictionary:(NSDictionary *)object;
 
 @property (nonatomic, strong) NSData *itemImage;
 @property (nonatomic, strong) NSString *itemName;

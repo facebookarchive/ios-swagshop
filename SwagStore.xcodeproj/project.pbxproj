@@ -32,7 +32,6 @@
 		ED9A01CD17B84D81001B9B68 /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED9A01CC17B84D81001B9B68 /* ItemCell.xib */; };
 		ED9A01D117B84DCE001B9B68 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9A01CF17B84DCE001B9B68 /* ItemDetailViewController.m */; };
 		ED9A01D217B84DCE001B9B68 /* ItemDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED9A01D017B84DCE001B9B68 /* ItemDetailViewController.xib */; };
-		EDCF5F1017B32CA000215A0E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F0F17B32CA000215A0E /* Parse.framework */; };
 		EDCF5F1217B32CFD00215A0E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F1117B32CFD00215A0E /* AudioToolbox.framework */; };
 		EDCF5F1417B32D0500215A0E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F1317B32D0500215A0E /* CFNetwork.framework */; };
 		EDCF5F1617B32D1100215A0E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F1517B32D1100215A0E /* CoreLocation.framework */; };
@@ -91,7 +90,6 @@
 		ED9A01CE17B84DCE001B9B68 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
 		ED9A01CF17B84DCE001B9B68 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
 		ED9A01D017B84DCE001B9B68 /* ItemDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemDetailViewController.xib; sourceTree = "<group>"; };
-		EDCF5F0F17B32CA000215A0E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		EDCF5F1117B32CFD00215A0E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		EDCF5F1317B32D0500215A0E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		EDCF5F1517B32D1100215A0E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -123,7 +121,6 @@
 				8FF3C19F17B98539001D63C3 /* FacebookSDK.framework in Frameworks */,
 				ED5A384D17B05DFB00F87E77 /* UIKit.framework in Frameworks */,
 				ED5A384917B05DFB00F87E77 /* Foundation.framework in Frameworks */,
-				EDCF5F1017B32CA000215A0E /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +169,6 @@
 				EDCF5F1517B32D1100215A0E /* CoreLocation.framework */,
 				EDCF5F1317B32D0500215A0E /* CFNetwork.framework */,
 				EDCF5F1117B32CFD00215A0E /* AudioToolbox.framework */,
-				EDCF5F0F17B32CA000215A0E /* Parse.framework */,
 				8FF3C19E17B98539001D63C3 /* FacebookSDK.framework */,
 				ED5A384817B05DFB00F87E77 /* Foundation.framework */,
 				ED5A384A17B05DFB00F87E77 /* CoreGraphics.framework */,

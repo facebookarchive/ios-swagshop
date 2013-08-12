@@ -10,15 +10,22 @@
 
 @implementation Item
 
-- (instancetype)initWithPFObject:(PFObject *)object
+- (instancetype)initWithNSDictionary:(NSDictionary *)object
 {
-  NSString *name =  [object objectForKey:@"name"];
-  NSString *description = [object objectForKey:@"description"];
-  int price = [[object objectForKey:@"price"] intValue];
-  PFFile *image = [object objectForKey:@"image"];
-  NSData *imageData = [image getData];
-  
-  return [self initWithItemName:name itemPrice:price itemDescription:description itemImage:imageData];
+    NSString *name =  [object objectForKey:@"title"];
+    NSString *description = [object objectForKey:@"description"];
+    
+    NSDictionary *offer = [object objectForKey:@"offer"];
+    
+    int price = [[[offer objectForKey:@"USD"] objectForKey:@"price"] intValue];
+    
+    NSDictionary *images = [object objectForKey:@"images"];
+    NSDictionary *image = [images objectForKey:@"800"];
+    
+    NSURL *imageURL = [NSURL URLWithString:[image objectForKey:@"url"]];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    
+    return [self initWithItemName:name itemPrice:price itemDescription: description itemImage:imageData];
 }
 
 - (instancetype)initWithItemName:(NSString *)name

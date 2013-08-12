@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Facebook Inc. All rights reserved.
 //
 
-#import <Parse/Parse.h>
-
 #import "ItemStore.h"
 #import "Item.h"
 
@@ -25,15 +23,20 @@
 {
   self = [super init];
   if (self){
+      
+    NSString *productsURL = @"http://dev.facebooksampleapp.com/swagshop/api/products.php?images";
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:productsURL]];
+    NSURLResponse *resp = nil;
+    NSError *err = nil;
+      
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:&err];
     
-    // Parse objects into an array
-    PFQuery *query = [PFQuery queryWithClassName:@"Item"];
-    NSArray *parseItems = [query findObjects];
-    
-    // transform the Parse objects into Items
+    NSDictionary *products = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&err];
+      
     _allItems = [[NSMutableArray alloc] init];
-    for (int i = 0; i < [parseItems count]; i++) {
-      Item *item = [[Item alloc] initWithPFObject:[parseItems objectAtIndex:i]];
+    for (id key in products) {
+      id product = [products objectForKey:key];
+      Item *item = [[Item alloc] initWithNSDictionary:product];
       [_allItems addObject:item];
     }
     
