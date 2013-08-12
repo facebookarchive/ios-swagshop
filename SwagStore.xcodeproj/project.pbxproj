@@ -1,0 +1,570 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ED3CCF4717B2F4ED00022703 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED3CCF4617B2F4ED00022703 /* FacebookSDK.framework */; };
+		ED3CCF4A17B2F73700022703 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3CCF4917B2F73700022703 /* ItemCell.m */; };
+		ED5A384917B05DFB00F87E77 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5A384817B05DFB00F87E77 /* Foundation.framework */; };
+		ED5A384B17B05DFB00F87E77 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5A384A17B05DFB00F87E77 /* CoreGraphics.framework */; };
+		ED5A384D17B05DFB00F87E77 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5A384C17B05DFB00F87E77 /* UIKit.framework */; };
+		ED5A385317B05DFB00F87E77 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED5A385117B05DFB00F87E77 /* InfoPlist.strings */; };
+		ED5A385517B05DFB00F87E77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5A385417B05DFB00F87E77 /* main.m */; };
+		ED5A385917B05DFB00F87E77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5A385817B05DFB00F87E77 /* AppDelegate.m */; };
+		ED5A385B17B05DFB00F87E77 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED5A385A17B05DFB00F87E77 /* Images.xcassets */; };
+		ED5A386217B05DFB00F87E77 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5A386117B05DFB00F87E77 /* XCTest.framework */; };
+		ED5A386317B05DFB00F87E77 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5A384817B05DFB00F87E77 /* Foundation.framework */; };
+		ED5A386417B05DFB00F87E77 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5A384C17B05DFB00F87E77 /* UIKit.framework */; };
+		ED5A386C17B05DFB00F87E77 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED5A386A17B05DFB00F87E77 /* InfoPlist.strings */; };
+		ED5A386E17B05DFB00F87E77 /* SwagStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5A386D17B05DFB00F87E77 /* SwagStoreTests.m */; };
+		ED5A387C17B05FC000F87E77 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5A387B17B05FC000F87E77 /* Item.m */; };
+		ED5A387F17B0616600F87E77 /* ItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5A387E17B0616600F87E77 /* ItemStore.m */; };
+		ED5A388E17B180BF00F87E77 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5A388C17B180BF00F87E77 /* SettingsViewController.m */; };
+		ED5A388F17B180BF00F87E77 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED5A388D17B180BF00F87E77 /* SettingsViewController.xib */; };
+		ED9A01C617B84CC0001B9B68 /* SettingsLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9A01C517B84CC0001B9B68 /* SettingsLoginViewController.m */; };
+		ED9A01C817B84CFE001B9B68 /* SettingsLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED9A01C717B84CFE001B9B68 /* SettingsLoginViewController.xib */; };
+		ED9A01CB17B84D49001B9B68 /* ItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9A01CA17B84D49001B9B68 /* ItemListViewController.m */; };
+		ED9A01CD17B84D81001B9B68 /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED9A01CC17B84D81001B9B68 /* ItemCell.xib */; };
+		ED9A01D117B84DCE001B9B68 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9A01CF17B84DCE001B9B68 /* ItemDetailViewController.m */; };
+		ED9A01D217B84DCE001B9B68 /* ItemDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED9A01D017B84DCE001B9B68 /* ItemDetailViewController.xib */; };
+		EDCF5F1017B32CA000215A0E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F0F17B32CA000215A0E /* Parse.framework */; };
+		EDCF5F1217B32CFD00215A0E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F1117B32CFD00215A0E /* AudioToolbox.framework */; };
+		EDCF5F1417B32D0500215A0E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F1317B32D0500215A0E /* CFNetwork.framework */; };
+		EDCF5F1617B32D1100215A0E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F1517B32D1100215A0E /* CoreLocation.framework */; };
+		EDCF5F1817B32D1B00215A0E /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F1717B32D1B00215A0E /* libz.1.1.3.dylib */; };
+		EDCF5F1A17B32D2400215A0E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F1917B32D2400215A0E /* MobileCoreServices.framework */; };
+		EDCF5F1C17B32D2A00215A0E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F1B17B32D2A00215A0E /* QuartzCore.framework */; };
+		EDCF5F1E17B32D3100215A0E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F1D17B32D3100215A0E /* Security.framework */; };
+		EDCF5F2017B32D3B00215A0E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F1F17B32D3A00215A0E /* StoreKit.framework */; };
+		EDCF5F2217B32D4500215A0E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F2117B32D4500215A0E /* SystemConfiguration.framework */; };
+		EDCF5F2517B5750500215A0E /* DetailPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCF5F2417B5750500215A0E /* DetailPageViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ED5A386517B05DFB00F87E77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED5A383D17B05DFB00F87E77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED5A384417B05DFB00F87E77;
+			remoteInfo = SwagStore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ED3CCF4617B2F4ED00022703 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		ED3CCF4817B2F73700022703 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
+		ED3CCF4917B2F73700022703 /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
+		ED5A384517B05DFB00F87E77 /* SwagStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwagStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED5A384817B05DFB00F87E77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		ED5A384A17B05DFB00F87E77 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		ED5A384C17B05DFB00F87E77 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		ED5A385017B05DFB00F87E77 /* SwagStore-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SwagStore-Info.plist"; sourceTree = "<group>"; };
+		ED5A385217B05DFB00F87E77 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ED5A385417B05DFB00F87E77 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		ED5A385617B05DFB00F87E77 /* SwagStore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwagStore-Prefix.pch"; sourceTree = "<group>"; };
+		ED5A385717B05DFB00F87E77 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		ED5A385817B05DFB00F87E77 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		ED5A385A17B05DFB00F87E77 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		ED5A386017B05DFB00F87E77 /* SwagStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwagStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED5A386117B05DFB00F87E77 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		ED5A386917B05DFB00F87E77 /* SwagStoreTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SwagStoreTests-Info.plist"; sourceTree = "<group>"; };
+		ED5A386B17B05DFB00F87E77 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ED5A386D17B05DFB00F87E77 /* SwagStoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwagStoreTests.m; sourceTree = "<group>"; };
+		ED5A387A17B05FC000F87E77 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		ED5A387B17B05FC000F87E77 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		ED5A387D17B0616600F87E77 /* ItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemStore.h; sourceTree = "<group>"; };
+		ED5A387E17B0616600F87E77 /* ItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemStore.m; sourceTree = "<group>"; };
+		ED5A388B17B180BF00F87E77 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		ED5A388C17B180BF00F87E77 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		ED5A388D17B180BF00F87E77 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		ED9A01C417B84A82001B9B68 /* SettingsLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsLoginViewController.h; sourceTree = "<group>"; };
+		ED9A01C517B84CC0001B9B68 /* SettingsLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsLoginViewController.m; sourceTree = "<group>"; };
+		ED9A01C717B84CFE001B9B68 /* SettingsLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsLoginViewController.xib; sourceTree = "<group>"; };
+		ED9A01C917B84D49001B9B68 /* ItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemListViewController.h; sourceTree = "<group>"; };
+		ED9A01CA17B84D49001B9B68 /* ItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemListViewController.m; sourceTree = "<group>"; };
+		ED9A01CC17B84D81001B9B68 /* ItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
+		ED9A01CE17B84DCE001B9B68 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
+		ED9A01CF17B84DCE001B9B68 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
+		ED9A01D017B84DCE001B9B68 /* ItemDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemDetailViewController.xib; sourceTree = "<group>"; };
+		EDCF5F0F17B32CA000215A0E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		EDCF5F1117B32CFD00215A0E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		EDCF5F1317B32D0500215A0E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		EDCF5F1517B32D1100215A0E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		EDCF5F1717B32D1B00215A0E /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		EDCF5F1917B32D2400215A0E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		EDCF5F1B17B32D2A00215A0E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EDCF5F1D17B32D3100215A0E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		EDCF5F1F17B32D3A00215A0E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		EDCF5F2117B32D4500215A0E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EDCF5F2317B5750500215A0E /* DetailPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPageViewController.h; sourceTree = "<group>"; };
+		EDCF5F2417B5750500215A0E /* DetailPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPageViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ED5A384217B05DFB00F87E77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDCF5F2217B32D4500215A0E /* SystemConfiguration.framework in Frameworks */,
+				EDCF5F2017B32D3B00215A0E /* StoreKit.framework in Frameworks */,
+				EDCF5F1E17B32D3100215A0E /* Security.framework in Frameworks */,
+				EDCF5F1C17B32D2A00215A0E /* QuartzCore.framework in Frameworks */,
+				EDCF5F1A17B32D2400215A0E /* MobileCoreServices.framework in Frameworks */,
+				EDCF5F1817B32D1B00215A0E /* libz.1.1.3.dylib in Frameworks */,
+				EDCF5F1617B32D1100215A0E /* CoreLocation.framework in Frameworks */,
+				EDCF5F1417B32D0500215A0E /* CFNetwork.framework in Frameworks */,
+				EDCF5F1217B32CFD00215A0E /* AudioToolbox.framework in Frameworks */,
+				ED5A384B17B05DFB00F87E77 /* CoreGraphics.framework in Frameworks */,
+				ED3CCF4717B2F4ED00022703 /* FacebookSDK.framework in Frameworks */,
+				ED5A384D17B05DFB00F87E77 /* UIKit.framework in Frameworks */,
+				ED5A384917B05DFB00F87E77 /* Foundation.framework in Frameworks */,
+				EDCF5F1017B32CA000215A0E /* Parse.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED5A385D17B05DFB00F87E77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED5A386217B05DFB00F87E77 /* XCTest.framework in Frameworks */,
+				ED5A386417B05DFB00F87E77 /* UIKit.framework in Frameworks */,
+				ED5A386317B05DFB00F87E77 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ED5A383C17B05DFB00F87E77 = {
+			isa = PBXGroup;
+			children = (
+				ED5A384E17B05DFB00F87E77 /* SwagStore */,
+				ED5A386717B05DFB00F87E77 /* SwagStoreTests */,
+				ED5A384717B05DFB00F87E77 /* Frameworks */,
+				ED5A384617B05DFB00F87E77 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ED5A384617B05DFB00F87E77 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED5A384517B05DFB00F87E77 /* SwagStore.app */,
+				ED5A386017B05DFB00F87E77 /* SwagStoreTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED5A384717B05DFB00F87E77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EDCF5F2117B32D4500215A0E /* SystemConfiguration.framework */,
+				EDCF5F1F17B32D3A00215A0E /* StoreKit.framework */,
+				EDCF5F1D17B32D3100215A0E /* Security.framework */,
+				EDCF5F1B17B32D2A00215A0E /* QuartzCore.framework */,
+				EDCF5F1917B32D2400215A0E /* MobileCoreServices.framework */,
+				EDCF5F1717B32D1B00215A0E /* libz.1.1.3.dylib */,
+				EDCF5F1517B32D1100215A0E /* CoreLocation.framework */,
+				EDCF5F1317B32D0500215A0E /* CFNetwork.framework */,
+				EDCF5F1117B32CFD00215A0E /* AudioToolbox.framework */,
+				EDCF5F0F17B32CA000215A0E /* Parse.framework */,
+				ED3CCF4617B2F4ED00022703 /* FacebookSDK.framework */,
+				ED5A384817B05DFB00F87E77 /* Foundation.framework */,
+				ED5A384A17B05DFB00F87E77 /* CoreGraphics.framework */,
+				ED5A384C17B05DFB00F87E77 /* UIKit.framework */,
+				ED5A386117B05DFB00F87E77 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED5A384E17B05DFB00F87E77 /* SwagStore */ = {
+			isa = PBXGroup;
+			children = (
+				ED9A01CE17B84DCE001B9B68 /* ItemDetailViewController.h */,
+				ED9A01CF17B84DCE001B9B68 /* ItemDetailViewController.m */,
+				ED9A01D017B84DCE001B9B68 /* ItemDetailViewController.xib */,
+				EDCF5F2317B5750500215A0E /* DetailPageViewController.h */,
+				EDCF5F2417B5750500215A0E /* DetailPageViewController.m */,
+				ED5A385717B05DFB00F87E77 /* AppDelegate.h */,
+				ED5A385817B05DFB00F87E77 /* AppDelegate.m */,
+				ED9A01C917B84D49001B9B68 /* ItemListViewController.h */,
+				ED9A01CA17B84D49001B9B68 /* ItemListViewController.m */,
+				ED5A388B17B180BF00F87E77 /* SettingsViewController.h */,
+				ED5A388C17B180BF00F87E77 /* SettingsViewController.m */,
+				ED5A388D17B180BF00F87E77 /* SettingsViewController.xib */,
+				ED9A01C417B84A82001B9B68 /* SettingsLoginViewController.h */,
+				ED9A01C517B84CC0001B9B68 /* SettingsLoginViewController.m */,
+				ED9A01C717B84CFE001B9B68 /* SettingsLoginViewController.xib */,
+				ED3CCF4817B2F73700022703 /* ItemCell.h */,
+				ED3CCF4917B2F73700022703 /* ItemCell.m */,
+				ED9A01CC17B84D81001B9B68 /* ItemCell.xib */,
+				ED5A387A17B05FC000F87E77 /* Item.h */,
+				ED5A387B17B05FC000F87E77 /* Item.m */,
+				ED5A387D17B0616600F87E77 /* ItemStore.h */,
+				ED5A387E17B0616600F87E77 /* ItemStore.m */,
+				ED5A385A17B05DFB00F87E77 /* Images.xcassets */,
+				ED5A384F17B05DFB00F87E77 /* Supporting Files */,
+			);
+			path = SwagStore;
+			sourceTree = "<group>";
+		};
+		ED5A384F17B05DFB00F87E77 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ED5A385017B05DFB00F87E77 /* SwagStore-Info.plist */,
+				ED5A385117B05DFB00F87E77 /* InfoPlist.strings */,
+				ED5A385417B05DFB00F87E77 /* main.m */,
+				ED5A385617B05DFB00F87E77 /* SwagStore-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ED5A386717B05DFB00F87E77 /* SwagStoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED5A386D17B05DFB00F87E77 /* SwagStoreTests.m */,
+				ED5A386817B05DFB00F87E77 /* Supporting Files */,
+			);
+			path = SwagStoreTests;
+			sourceTree = "<group>";
+		};
+		ED5A386817B05DFB00F87E77 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ED5A386917B05DFB00F87E77 /* SwagStoreTests-Info.plist */,
+				ED5A386A17B05DFB00F87E77 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ED5A384417B05DFB00F87E77 /* SwagStore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED5A387117B05DFB00F87E77 /* Build configuration list for PBXNativeTarget "SwagStore" */;
+			buildPhases = (
+				ED5A384117B05DFB00F87E77 /* Sources */,
+				ED5A384217B05DFB00F87E77 /* Frameworks */,
+				ED5A384317B05DFB00F87E77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwagStore;
+			productName = SwagStore;
+			productReference = ED5A384517B05DFB00F87E77 /* SwagStore.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ED5A385F17B05DFB00F87E77 /* SwagStoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED5A387417B05DFB00F87E77 /* Build configuration list for PBXNativeTarget "SwagStoreTests" */;
+			buildPhases = (
+				ED5A385C17B05DFB00F87E77 /* Sources */,
+				ED5A385D17B05DFB00F87E77 /* Frameworks */,
+				ED5A385E17B05DFB00F87E77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED5A386617B05DFB00F87E77 /* PBXTargetDependency */,
+			);
+			name = SwagStoreTests;
+			productName = SwagStoreTests;
+			productReference = ED5A386017B05DFB00F87E77 /* SwagStoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ED5A383D17B05DFB00F87E77 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Facebook Inc";
+				TargetAttributes = {
+					ED5A385F17B05DFB00F87E77 = {
+						TestTargetID = ED5A384417B05DFB00F87E77;
+					};
+				};
+			};
+			buildConfigurationList = ED5A384017B05DFB00F87E77 /* Build configuration list for PBXProject "SwagStore" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = ED5A383C17B05DFB00F87E77;
+			productRefGroup = ED5A384617B05DFB00F87E77 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ED5A384417B05DFB00F87E77 /* SwagStore */,
+				ED5A385F17B05DFB00F87E77 /* SwagStoreTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ED5A384317B05DFB00F87E77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED5A385317B05DFB00F87E77 /* InfoPlist.strings in Resources */,
+				ED9A01C817B84CFE001B9B68 /* SettingsLoginViewController.xib in Resources */,
+				ED5A385B17B05DFB00F87E77 /* Images.xcassets in Resources */,
+				ED9A01CD17B84D81001B9B68 /* ItemCell.xib in Resources */,
+				ED5A388F17B180BF00F87E77 /* SettingsViewController.xib in Resources */,
+				ED9A01D217B84DCE001B9B68 /* ItemDetailViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED5A385E17B05DFB00F87E77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED5A386C17B05DFB00F87E77 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ED5A384117B05DFB00F87E77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED5A385917B05DFB00F87E77 /* AppDelegate.m in Sources */,
+				ED5A387C17B05FC000F87E77 /* Item.m in Sources */,
+				ED9A01D117B84DCE001B9B68 /* ItemDetailViewController.m in Sources */,
+				ED5A385517B05DFB00F87E77 /* main.m in Sources */,
+				ED3CCF4A17B2F73700022703 /* ItemCell.m in Sources */,
+				ED9A01C617B84CC0001B9B68 /* SettingsLoginViewController.m in Sources */,
+				ED9A01CB17B84D49001B9B68 /* ItemListViewController.m in Sources */,
+				ED5A387F17B0616600F87E77 /* ItemStore.m in Sources */,
+				EDCF5F2517B5750500215A0E /* DetailPageViewController.m in Sources */,
+				ED5A388E17B180BF00F87E77 /* SettingsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED5A385C17B05DFB00F87E77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED5A386E17B05DFB00F87E77 /* SwagStoreTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ED5A386617B05DFB00F87E77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED5A384417B05DFB00F87E77 /* SwagStore */;
+			targetProxy = ED5A386517B05DFB00F87E77 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ED5A385117B05DFB00F87E77 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED5A385217B05DFB00F87E77 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		ED5A386A17B05DFB00F87E77 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED5A386B17B05DFB00F87E77 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ED5A386F17B05DFB00F87E77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		ED5A387017B05DFB00F87E77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ED5A387217B05DFB00F87E77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../Documents/FacebookSDK",
+					"$(SRCROOT)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SwagStore/SwagStore-Prefix.pch";
+				INFOPLIST_FILE = "SwagStore/SwagStore-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		ED5A387317B05DFB00F87E77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../Documents/FacebookSDK",
+					"$(SRCROOT)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SwagStore/SwagStore-Prefix.pch";
+				INFOPLIST_FILE = "SwagStore/SwagStore-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		ED5A387517B05DFB00F87E77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SwagStore.app/SwagStore";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode5-DP3.app/Contents/Developer/Library/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SwagStore/SwagStore-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SwagStoreTests/SwagStoreTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		ED5A387617B05DFB00F87E77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SwagStore.app/SwagStore";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode5-DP3.app/Contents/Developer/Library/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SwagStore/SwagStore-Prefix.pch";
+				INFOPLIST_FILE = "SwagStoreTests/SwagStoreTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ED5A384017B05DFB00F87E77 /* Build configuration list for PBXProject "SwagStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED5A386F17B05DFB00F87E77 /* Debug */,
+				ED5A387017B05DFB00F87E77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED5A387117B05DFB00F87E77 /* Build configuration list for PBXNativeTarget "SwagStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED5A387217B05DFB00F87E77 /* Debug */,
+				ED5A387317B05DFB00F87E77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED5A387417B05DFB00F87E77 /* Build configuration list for PBXNativeTarget "SwagStoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED5A387517B05DFB00F87E77 /* Debug */,
+				ED5A387617B05DFB00F87E77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ED5A383D17B05DFB00F87E77 /* Project object */;
+}
