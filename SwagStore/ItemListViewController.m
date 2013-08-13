@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Facebook Inc. All rights reserved.
 //
 
-#import <Parse/Parse.h>
 #import <FacebookSDK/FacebookSDK.h>
 
 #import "ItemListViewController.h"

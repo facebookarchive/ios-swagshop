@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Facebook Inc. All rights reserved.
 //
 
-#import <Parse/Parse.h>
 #import <FacebookSDK/FacebookSDK.h>
 
 #import "AppDelegate.h"
@@ -30,10 +29,6 @@
   
     // Horrible hack to solve a cocoa bug
     [FBProfilePictureView class];
-  
-    // Parse app id and client key
-    [Parse setApplicationId:@"8pkaJk7q67ZcOFzQR0RUlmSBIgUKgu2K1nDpNul5"
-                  clientKey:@"lMBgSO5KUqvSlWB6EdeveDkuCXTaAW0oKTqxWqy7"];
   
     // Whenever a person opens the app, check for a cached session
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
