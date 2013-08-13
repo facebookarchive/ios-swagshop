@@ -15,7 +15,7 @@
 @interface ItemDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *nameField;
-@property (weak, nonatomic) IBOutlet UILabel *serialField;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionField;
 @property (weak, nonatomic) IBOutlet UILabel *valueField;
 @property (weak, nonatomic) IBOutlet UIButton *addToWishlist;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -39,9 +39,12 @@
 {
   [super viewWillAppear:(BOOL)animated];
   Item *item = [self item];
+  [self descriptionField].numberOfLines = 0;
+  [[self descriptionField] sizeToFit];
   [[self nameField] setText:[item itemName]];
-  [[self serialField] setText:[item itemDescription]];
-  [[self valueField] setText:[NSString stringWithFormat:@"%d", [item itemPrice]]];
+  [[self descriptionField] setText:[item itemDescription]];
+  [self valueField].textAlignment = NSTextAlignmentCenter;
+  [[self valueField] setText:[NSString stringWithFormat:@"$%d", [item itemPrice]]];
   UIImage *image = [UIImage imageWithData:[item itemImage]];
   [[self imageView] setImage:image];
 

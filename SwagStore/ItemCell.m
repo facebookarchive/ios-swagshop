@@ -11,11 +11,7 @@
 @implementation ItemCell
 
 - (instancetype)populateFromItem:(Item *)item
-{
-    [self nameLabel].lineBreakMode = NSLineBreakByTruncatingTail;
-    [self descriptionLabel].lineBreakMode = NSLineBreakByTruncatingTail;
-    [self valueLabel].lineBreakMode = NSLineBreakByTruncatingTail;
-    
+{    
     [[self nameLabel] setText:[item itemName]];
     [[self descriptionLabel] setText:[item itemDescription]];
     [[self valueLabel] setText:[NSString stringWithFormat:@"$%d", [item itemPrice]]];
