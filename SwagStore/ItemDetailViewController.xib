@@ -68,6 +68,9 @@
                     <state key="highlighted">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="addToWishlist:" destination="-1" eventType="touchUpInside" id="TJJ-EK-k3B"/>
+                    </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Eh-eP-nsj">
                     <rect key="frame" x="15" y="86" width="290" height="224"/>
