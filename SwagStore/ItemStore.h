@@ -11,9 +11,8 @@
 @class Item;
 
 @interface ItemStore : NSObject
-{
-  
-}
+
+- (void)removeItem:(Item *)item;
 
 + (ItemStore *)sharedStore;
 
