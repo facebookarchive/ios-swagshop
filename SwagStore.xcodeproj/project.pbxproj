@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8FF3C19F17B98539001D63C3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF3C19E17B98539001D63C3 /* FacebookSDK.framework */; };
 		8FF3C1A017B98539001D63C3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF3C19E17B98539001D63C3 /* FacebookSDK.framework */; };
+		ED0A01C917B98AD7002B1776 /* WishlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0A01C817B98AD7002B1776 /* WishlistViewController.m */; };
 		ED3CCF4A17B2F73700022703 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3CCF4917B2F73700022703 /* ItemCell.m */; };
 		ED5A384917B05DFB00F87E77 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5A384817B05DFB00F87E77 /* Foundation.framework */; };
 		ED5A384B17B05DFB00F87E77 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5A384A17B05DFB00F87E77 /* CoreGraphics.framework */; };
@@ -56,6 +57,8 @@
 
 /* Begin PBXFileReference section */
 		8FF3C19E17B98539001D63C3 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		ED0A01C717B98AD7002B1776 /* WishlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WishlistViewController.h; sourceTree = "<group>"; };
+		ED0A01C817B98AD7002B1776 /* WishlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WishlistViewController.m; sourceTree = "<group>"; };
 		ED3CCF4817B2F73700022703 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
 		ED3CCF4917B2F73700022703 /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
 		ED5A384517B05DFB00F87E77 /* SwagStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwagStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +199,8 @@
 				ED9A01C417B84A82001B9B68 /* SettingsLoginViewController.h */,
 				ED9A01C517B84CC0001B9B68 /* SettingsLoginViewController.m */,
 				ED9A01C717B84CFE001B9B68 /* SettingsLoginViewController.xib */,
+				ED0A01C717B98AD7002B1776 /* WishlistViewController.h */,
+				ED0A01C817B98AD7002B1776 /* WishlistViewController.m */,
 				ED3CCF4817B2F73700022703 /* ItemCell.h */,
 				ED3CCF4917B2F73700022703 /* ItemCell.m */,
 				ED9A01CC17B84D81001B9B68 /* ItemCell.xib */,
@@ -343,6 +348,7 @@
 				ED5A385517B05DFB00F87E77 /* main.m in Sources */,
 				ED3CCF4A17B2F73700022703 /* ItemCell.m in Sources */,
 				ED9A01C617B84CC0001B9B68 /* SettingsLoginViewController.m in Sources */,
+				ED0A01C917B98AD7002B1776 /* WishlistViewController.m in Sources */,
 				ED9A01CB17B84D49001B9B68 /* ItemListViewController.m in Sources */,
 				ED5A387F17B0616600F87E77 /* ItemStore.m in Sources */,
 				EDCF5F2517B5750500215A0E /* DetailPageViewController.m in Sources */,

@@ -44,6 +44,13 @@
   return self;
 }
 
+// For testing purposes, a function to remove an item - this SHOULD NOT EXIST
+- (void)removeItem:(Item *)item
+{
+  [_allItems removeObjectIdenticalTo:item];
+}
+//
+
 + (ItemStore *)sharedStore
 {
   static ItemStore *sharedStore = nil;
