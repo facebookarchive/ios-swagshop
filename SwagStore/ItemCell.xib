@@ -9,7 +9,7 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="J23-b4-ddV" customClass="ItemCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J23-b4-ddV" id="0iL-ci-lAe">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="J23-b4-ddV" id="0iL-ci-lAe">
                 <rect key="frame" x="0.0" y="0.0" width="322" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>

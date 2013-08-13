@@ -9,11 +9,13 @@
 #import "SettingsViewController.h"
 #import "SettingsLoginViewController.h"
 #import "AppDelegate.h"
+#import "WishlistViewController.h"
 
 @interface SettingsViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *buttonFacebookLogout;
 @property (weak, nonatomic) IBOutlet UILabel *labelUserName;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *imageProfilePicture;
+@property (strong, nonatomic) IBOutlet UIButton *buttonWishlist;
 
 @end
 
@@ -26,6 +28,9 @@
     if (FBSession.activeSession.isOpen) {
       [[self buttonFacebookLogout] addTarget:self
                                       action:@selector(logoutFromFacebook:)
+                            forControlEvents:UIControlEventTouchUpInside];
+      [[self buttonWishlist] addTarget:self
+                                      action:@selector(goToWishlist:)
                             forControlEvents:UIControlEventTouchUpInside];
     } else {
       AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
@@ -64,6 +69,12 @@
 {
   [FBSession.activeSession closeAndClearTokenInformation];
   [[self navigationController] popToRootViewControllerAnimated:NO];
+}
+
+- (IBAction)goToWishlist:(id)sender
+{
+  WishlistViewController *wishlistViewController = [[WishlistViewController alloc] init];
+  [[self navigationController] pushViewController:wishlistViewController animated:YES];
 }
 
 @end
