@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSData *itemImage;
 @property (nonatomic, strong) NSString *itemName;
 @property (nonatomic, strong) NSString *itemDescription;
+@property (nonatomic, strong) NSString *itemURL;
 @property (nonatomic) int itemPrice;
 
 @end

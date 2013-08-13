@@ -6,15 +6,17 @@
 //  Copyright (c) 2013 Facebook Inc. All rights reserved.
 //
 
+#import <FacebookSDK/FacebookSDK.h>
+
 #import "ItemDetailViewController.h"
 #import "Item.h"
+#import "OGProtocols.h"
 
 @interface ItemDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *nameField;
 @property (weak, nonatomic) IBOutlet UILabel *serialField;
 @property (weak, nonatomic) IBOutlet UILabel *valueField;
-@property (weak, nonatomic) IBOutlet UILabel *dateField;
 @property (weak, nonatomic) IBOutlet UIButton *addToWishlist;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
@@ -52,7 +54,65 @@
 
 - (IBAction)addToWishlist:(id)sender
 {
- // some shit
+  // Check for publish permissions
+   if ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] == NSNotFound) {
+     // Permission hasn't been granted, so ask for publish_actions
+     [FBSession openActiveSessionWithPublishPermissions:@[@"publish_actions"]
+                                        defaultAudience:FBSessionDefaultAudienceFriends
+                                           allowLoginUI:YES
+                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                        if (FBSession.activeSession.isOpen && !error) {
+                                          // Permission was granted, publish the OG story
+                                          [self publishStory];
+                                        } else {
+                                          // TO DO: Handle permission denied and errors
+                                        }
+                                      }];
+   } else {
+     // If permissions present, publish the OG story
+     [self publishStory];
+   }
+}
+
+- (void)publishStory
+{
+  // Create the OG product object for the item
+  id<OGProductObject> productObject = [self productObjectForItem:[self item]];
+  
+  // Now create an OG wishlist action with the product object
+  id<OGWishlistAction> action = (id<OGWishlistAction>)[FBGraphObject graphObject];
+  action.product = productObject;
+  
+  // Post the action to Facebook
+  [FBRequestConnection startForPostWithGraphPath:@"me/fbswagshop:wishlist"
+                                     graphObject:action
+                        completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                          NSString *alertText;
+                          if (!error) {
+                            alertText = [NSString stringWithFormat:@"Posted OG action, id: %@", [result objectForKey:@"id"]];
+                          } else {
+                            alertText = [NSString stringWithFormat:@"error: domain = %@, code = %d", error.domain, error.code];
+                          }
+                          // Show the result in an alert
+                          [[[UIAlertView alloc] initWithTitle:@"Result"
+                                                      message:alertText
+                                                     delegate:self
+                                            cancelButtonTitle:@"OK!"
+                                            otherButtonTitles:nil] show];
+                        }];
+}
+
+// Create a product UG object from an item
+- (id<OGProductObject>)productObjectForItem:(Item*)item
+{
+  // We create an FBGraphObject object, but we can treat it as an OGProductObject with typed properties, etc.
+  // See <FacebookSDK/FBGraphObject.h> for more details.
+  id<OGProductObject> product = (id<OGProductObject>)[FBGraphObject graphObject];
+  
+  // Give it the URL where the object is hosted, which will echo back the name of the item as its title, description, and body.
+  product.url = [[self item] itemURL];
+  
+  return product;
 }
 
 @end
