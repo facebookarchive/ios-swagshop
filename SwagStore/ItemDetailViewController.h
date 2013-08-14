@@ -12,5 +12,6 @@
 
 @interface ItemDetailViewController : UIViewController
 @property (nonatomic, strong) Item *item;
+@property (nonatomic) NSUInteger friendsAdded;
 
 @end

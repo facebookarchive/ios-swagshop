@@ -107,7 +107,7 @@
 - (void)openFacebookSession
 {
   NSLog(@"opening session");
-  [FBSession openActiveSessionWithReadPermissions:nil
+  [FBSession openActiveSessionWithReadPermissions:@[@"user_actions:fbswagshop",@"friends_actions:fbswagshop"]
                                      allowLoginUI:YES
                                 completionHandler:
    ^(FBSession *session, FBSessionState state, NSError *error) {
