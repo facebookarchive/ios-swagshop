@@ -9,7 +9,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 
 #import "ItemListViewController.h"
-#import "ItemStore.h"
+#import "DataStore.h"
 #import "Item.h"
 #import "ItemDetailViewController.h"
 #import "SettingsLoginViewController.h"
