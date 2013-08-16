@@ -53,7 +53,7 @@
       NSLog(@"making request");
       
       //    FBRequestConnection *fbConnection = [[FBRequestConnection alloc] init];
-      //    FBRequest *request1 = [FBRequest requestWithGraphPath:@"me" parameters:nil HTTPMethod:@"GET"];
+      //    FBRequest *request1 = [FBRequest requestWithGraphPath:@"me/fbswagshop:wishlist" parameters:nil HTTPMethod:@"GET"];
       //    [fbConnection addRequest:request1
       //           completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
       //             if (error) {
