@@ -84,24 +84,37 @@
 
 - (IBAction)addToWishlist:(id)sender
 {
-  // Check for publish permissions
-   if ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] == NSNotFound) {
-     // Permission hasn't been granted, so ask for publish_actions
-     [FBSession openActiveSessionWithPublishPermissions:@[@"publish_actions"]
-                                        defaultAudience:FBSessionDefaultAudienceFriends
-                                           allowLoginUI:YES
-                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-                                        if (FBSession.activeSession.isOpen && !error) {
-                                          // Permission was granted, publish the OG story
-                                          [self publishStory];
-                                        } else {
-                                          // TO DO: Handle permission denied and errors
-                                        }
-                                      }];
-   } else {
-     // If permissions present, publish the OG story
-     [self publishStory];
-   }
+  if (FBSession.activeSession.isOpen) {
+    // Check for publish permissions
+     if ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] == NSNotFound) {
+       // Permission hasn't been granted, so ask for publish_actions
+       [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObject:@"publish_actions"] //@[@"publish_actions"]
+                                          defaultAudience:FBSessionDefaultAudienceFriends
+                                             allowLoginUI:YES
+                                        completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                          if (FBSession.activeSession.isOpen && !error) {
+                                            // Permission was granted, publish the OG story
+                                            [self publishStory];
+                                          } else {
+                                            // TO DO: Handle permission denied and errors
+                                          }
+                                        }];
+     } else {
+       // If permissions present, publish the OG story
+       [self publishStory];
+     }
+  } else {
+    [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
+                                       defaultAudience:FBSessionDefaultAudienceFriends
+                                          allowLoginUI:YES
+                                     completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                                       if (!error && status == FBSessionStateOpen) {
+                                         [self publishStory];
+                                       }else{
+                                         NSLog(@"error");
+                                       }
+                                     }];
+  }
 }
 
 - (void)publishStory
