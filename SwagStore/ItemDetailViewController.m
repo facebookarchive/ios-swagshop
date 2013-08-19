@@ -85,26 +85,31 @@
 - (IBAction)addToWishlist:(id)sender
 {
   if (FBSession.activeSession.isOpen) {
+    NSLog(@"session open");
     // Check for publish permissions
-     if ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] == NSNotFound) {
+    NSLog([NSString stringWithFormat: @"%@", FBSession.activeSession.permissions]);
+    if ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] == NSNotFound){
+       NSLog(@"publish actions permission not found");
        // Permission hasn't been granted, so ask for publish_actions
-       [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObject:@"publish_actions"] //@[@"publish_actions"]
-                                          defaultAudience:FBSessionDefaultAudienceFriends
-                                             allowLoginUI:YES
-                                        completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-                                          if (FBSession.activeSession.isOpen && !error) {
+      [FBSession.activeSession requestNewPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
+                                            defaultAudience:FBSessionDefaultAudienceFriends
+                                          completionHandler:^(FBSession *session, NSError *error) {
+                                          if (!error && session.isOpen) {
                                             // Permission was granted, publish the OG story
                                             [self publishStory];
+                                      
                                           } else {
                                             // TO DO: Handle permission denied and errors
                                           }
                                         }];
      } else {
+       NSLog(@"publish actions permission found");
        // If permissions present, publish the OG story
        [self publishStory];
      }
   } else {
-    [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
+    NSLog(@"no session open");
+    [FBSession openActiveSessionWithPublishPermissions:@[@"publish_actions"]
                                        defaultAudience:FBSessionDefaultAudienceFriends
                                           allowLoginUI:YES
                                      completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
