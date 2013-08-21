@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Facebook Inc. All rights reserved.
 //
 
-#import <FacebookSDK/FacebookSDK.h>
-
 #import "AppDelegate.h"
 #import "ItemListViewController.h"
 #import "SettingsLoginViewController.h"

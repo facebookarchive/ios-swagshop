@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -15,5 +16,8 @@
 
 - (void)openFacebookSession;
 - (void)showFacebookLoginView;
+- (void)facebookSessionStateChanged:(FBSession *)session
+                              state:(FBSessionState) state
+                              error:(NSError *)error;
 
 @end
