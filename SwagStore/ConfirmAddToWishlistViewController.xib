@@ -9,7 +9,7 @@
                 <outlet property="acceptButton" destination="0Or-r5-7x4" id="KKq-Sw-Hdu"/>
                 <outlet property="cancelButton" destination="iCj-U3-tOz" id="dDz-3o-Ti8"/>
                 <outlet property="confirmMessageLabel" destination="kz1-MY-BBm" id="VtD-xg-9vK"/>
-                <outlet property="userCustomMessageTextField" destination="iIO-Vd-eal" id="38u-fR-nLX"/>
+                <outlet property="userCustomMessageTextView" destination="hcf-8Q-dOc" id="kH0-jJ-Mlz"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -19,19 +19,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kz1-MY-BBm">
-                    <rect key="frame" x="24" y="90" width="267" height="21"/>
+                    <rect key="frame" x="24" y="62" width="267" height="102"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="add a message for your Facebook post" borderStyle="roundedRect" minimumFontSize="17" id="iIO-Vd-eal">
-                    <rect key="frame" x="24" y="168" width="267" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0Or-r5-7x4">
-                    <rect key="frame" x="195" y="240" width="73" height="44"/>
+                    <rect key="frame" x="190" y="331" width="73" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.21813272625865762" green="0.61433753188775508" blue="0.52003355255040751" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -47,7 +41,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iCj-U3-tOz">
-                    <rect key="frame" x="41" y="240" width="73" height="44"/>
+                    <rect key="frame" x="59" y="331" width="73" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="0.40979458952644277" blue="0.57877481214273496" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -58,7 +52,19 @@
                     <state key="highlighted">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="userCanceled:" destination="-1" eventType="touchUpInside" id="zjY-FA-Rtn"/>
+                    </connections>
                 </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" id="hcf-8Q-dOc">
+                    <rect key="frame" x="30" y="178" width="255" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.96889249027007984" green="0.95476664081833795" blue="0.97094228316326525" alpha="1" colorSpace="calibratedRGB"/>
+                    <inset key="contentInset" minX="6" minY="6" maxX="6" maxY="6"/>
+                    <color key="textColor" red="0.19618370542500965" green="0.19201832582628975" blue="0.19644850127551017" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

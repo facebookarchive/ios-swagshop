@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 #import "OGProtocols.h"
+#import "Item.h"
 
-@interface ConfirmAddToWishlistViewController : UIViewController
+@interface ConfirmAddToWishlistViewController : UIViewController <UITextViewDelegate>
 
-- (instancetype)initWithObject:(id<OGProductObject>)object;
+- (instancetype)initWithObject:(id<OGProductObject>)object item:(Item *)item;
 
 @end

@@ -13,23 +13,61 @@
 
 @interface ConfirmAddToWishlistViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *confirmMessageLabel;
-@property (strong, nonatomic) IBOutlet UITextField *userCustomMessageTextField;
+@property (strong, nonatomic) IBOutlet UITextView *userCustomMessageTextView;
+@property (strong, nonatomic) NSString *placeholderMessage;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
 @property (strong, nonatomic) IBOutlet UIButton *acceptButton;
 @property (strong, nonatomic) id<OGProductObject> productObject;
+@property (strong, nonatomic) Item *item;
 
 @end
 
 @implementation ConfirmAddToWishlistViewController
 
-- (instancetype)initWithObject:(id<OGProductObject>)object
+- (instancetype)initWithObject:(id<OGProductObject>)object item:(Item *)item
 {
   self = [self initWithNibName:@"ConfirmAddToWishlistViewController" bundle:nil];
   if (self){
-    // The object on which the action is performed
+    // The object on which the action is performed, in its OG object and Item form
     _productObject = object;
+    _item = item;
   }
   return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  // Tell the user we will post his action to Facebook
+  [[self confirmMessageLabel]
+   setText:[NSString stringWithFormat:@"%@ will be added to your wishlist and posted to Facebook", [_item itemName]]];
+  
+  // Prompt them to add a message
+  _placeholderMessage = @"Add a message to your Facebook post";
+  [_userCustomMessageTextView setText:_placeholderMessage];
+  _userCustomMessageTextView.delegate = self;
+}
+
+// When the user beings editing the custom message, make the placeholder text disappear
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+  if ([[textView text] isEqual:_placeholderMessage]){
+    [textView setText:@""];
+  }
+}
+
+// Hide the keyboard when the user touches outside the UITextView
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+  
+  UITouch *touch = [[event allTouches] anyObject];
+  if ([_userCustomMessageTextView isFirstResponder] && [touch view] != _userCustomMessageTextView) {
+    [_userCustomMessageTextView resignFirstResponder];
+  }
+  [super touchesBegan:touches withEvent:event];
+}
+
+- (IBAction)userCanceled:(id)sender
+{
+  [self goBackToItemDetail];
 }
 
 - (IBAction)userAccepted:(id)sender
@@ -165,6 +203,9 @@
   // Create an OG wishlist action with the product object
   id<OGWishlistAction> action = (id<OGWishlistAction>)[FBGraphObject graphObject];
   action.product = _productObject;
+  if (![[_userCustomMessageTextView text] isEqual:_placeholderMessage]){
+    action.message = [_userCustomMessageTextView text];
+  }
   
   // Post the action to Facebook
   [FBRequestConnection startForPostWithGraphPath:@"me/fbswagshop:wishlist"
