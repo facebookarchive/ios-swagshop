@@ -124,7 +124,6 @@
 
 - (void)showFacebookLoginView
 {
-  NSLog(@"show facebook login view");
   UIViewController *topViewController = [_navigationController topViewController];
   
   SettingsLoginViewController* loginViewController =
