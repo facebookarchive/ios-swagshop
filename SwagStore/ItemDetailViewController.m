@@ -103,7 +103,7 @@
   UIViewController *topViewController = [[appDelegate navigationController] topViewController];
   
   ConfirmAddToWishlistViewController* confirmCAddToWishlistViewController =
-  [[ConfirmAddToWishlistViewController alloc] initWithObject:_productObject];
+  [[ConfirmAddToWishlistViewController alloc] initWithObject:_productObject item:_item];
   [topViewController presentViewController:confirmCAddToWishlistViewController animated:NO completion:nil];
 }
 
