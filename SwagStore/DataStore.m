@@ -130,82 +130,51 @@
       //                              //                                                otherButtonTitles:nil] show];
       //                            }];
       
+    
+      FBRequestConnection *connection = [[FBRequestConnection alloc] init];
       
-//      FBRequestConnection *connection = [[FBRequestConnection alloc] init];
-//      
-//      // First request posts a status update
-//      FBRequest *request1 =
-//      [FBRequest requestForGraphPath:@"me/fbswagshop:wishlist"];
-//      [connection addRequest:request1
-//           completionHandler:
-//       ^(FBRequestConnection *connection, id result, NSError *error) {
-//         if (error) {
-//           NSString *alertText;
-//           alertText = [NSString stringWithFormat:@"error1: domain = %@, code = %d", error.domain, error.code];
-//           NSLog(alertText);
-//         } else {
-//           NSLog(@" 1 went ok");
-//         }
-//       }
-//              batchEntryName:@"get-actions"
-//       ];
-//      
-//      // Second request retrieves the status posted
-//      FBRequest *request2 = [FBRequest requestForGraphPath:@"?ids={result=get-actions:$.data.*.data.product.id}"];
-//      [connection addRequest:request2
-//           completionHandler:
-//       ^(FBRequestConnection *connection, id result, NSError *error) {
-//         if (error){
-//           NSString *alertText;
-//           alertText = [NSString stringWithFormat:@"error2: domain = %@, code = %d", error.domain, error.code];
-//           NSLog(alertText);
-//         } else if (!error &&  result) {
-//           NSLog(@"it went ok");
-//         }
-//       }
-//       ];
-//      
-//      [connection start];
+      // First request gets the wishlist actions
+      FBRequest *request1 =
+      [FBRequest requestForGraphPath:@"me/fbswagshop:wishlist"];
+      [connection addRequest:request1
+           completionHandler:
+       ^(FBRequestConnection *connection, id result, NSError *error) {
+         if (error) {
+           NSString *alertText;
+           alertText = [NSString stringWithFormat:@"error1: domain = %@, code = %d", error.domain, error.code];
+           NSLog(alertText);
+         } else {
+           NSLog(@" 1 went ok");
+         }
+       }
+              batchEntryName:@"get-actions"
+       ];
       
+      // Second request gets the product details
+      FBRequest *request2 = [FBRequest requestForGraphPath:@"?ids={result=get-actions:$.data.*.data.product.id}"];
+      [connection addRequest:request2
+           completionHandler:
+       ^(FBRequestConnection *connection, id result, NSError *error) {
+         if (error){
+           NSString *alertText;
+           alertText = [NSString stringWithFormat:@"error2: domain = %@, code = %d", error.domain, error.code];
+           NSLog(alertText);
+         } else if (!error &&  result) {
+           NSLog(@"it went ok");
+           for (id productObject in result) {
+             Item *item = [[Item alloc] initWithFBObject:productObject];
+             [_allWishlistItems addObject:item];
+           }
+         }
+       }
+       
+       ];
       
-      
-      
-            [FBRequestConnection startWithGraphPath:@"me/fbswagshop:wishlist"
-                                  completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-                                    NSString *alertText;
-                                    if (!error) {
-                                      NSLog(@"request for wishlist went ok");
-                                      // Parse reply //TO DO: what does that error:nil mean?
-                                      NSArray *actions = [result objectForKey:@"data"];
-      
-                                      NSMutableArray *productIDs = [[NSMutableArray alloc] init];
-                                      for (id action in actions){
-                                        id productID = [[[action objectForKey:@"data"] objectForKey:@"product"] objectForKey:@"id"];
-                                        [productIDs addObject:productID];
-      
-                                        // Debug code TO DO: replace by a query that gets the title, picture and description from the product id
-                                        id productTitle = [[[action objectForKey:@"data"] objectForKey:@"product"] objectForKey:@"title"];
-                                        NSDictionary *product = @{@"title": productTitle};
-                                        //
-      
-                                        Item *item = [[Item alloc] initWithNSDictionary:product];
-                                        [_allWishlistItems addObject:item];
-                                      }
-                                    } else {
-                                      alertText = [NSString stringWithFormat:@"error: domain = %@, code = %d", error.domain, error.code];
-                                    }
-      
-                                    // TO DO: error management
-      ////                              [[[UIAlertView alloc] initWithTitle:@"Result"
-      ////                                                          message:alertText
-      ////                                                         delegate:self
-      ////                                                cancelButtonTitle:@"OK!"
-      ////                                                otherButtonTitles:nil] show];
-                                  }];
+      [connection start];
       
     }
   }
-       
+  
   return self;
 }
 
