@@ -10,8 +10,6 @@
 
 @interface Action : NSObject
 
-- (id)initWithNSDictionary:(NSDictionary *)object;
-
 @property (nonatomic) int actionID;
 @property (nonatomic, strong) NSString *actionObjectName;
 @property (nonatomic, strong) NSString *actionObjectDescription;
