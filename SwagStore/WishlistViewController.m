@@ -11,7 +11,7 @@
 #import "SettingsViewController.h"
 
 // this is only here for test purposes
-#import "ItemStore.h"
+#import "DataStore.h"
 #import "Item.h"
 
 @interface WishlistViewController ()
@@ -62,12 +62,11 @@
   // If the table view is asking to commit a delete command
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     
-    // TO DO: remove the OG action from FB
+    // Remove the item from the wish list
     ItemStore *itemStore = [ItemStore sharedStore];
-    NSArray *items = [itemStore allItems];
-    Item *item = [items objectAtIndex:[indexPath row]];
-    [itemStore removeItem:item];
-    //
+    NSArray *wishlistItems = [itemStore allWishlistItems];
+    Item *wishlistItem = [wishlistItems objectAtIndex:[indexPath row]];
+    [itemStore removeWishlistItem:wishlistItem];
     
     // Remove the cell from the table
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -89,8 +88,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  // TO DO: customize with OG action count
-  return [[[ItemStore sharedStore] allItems] count];
+  // Return the number of rows
+  return [[[ItemStore sharedStore] allWishlistItems] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -98,12 +97,12 @@
   // Get a cell
   ItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell"];
   
-  // TO DO: Retrieve OG objects from user actions and turn them into item objects
-  NSArray *items = [[ItemStore sharedStore] allItems];
-  Item *item = [items objectAtIndex:[indexPath row]];
-  //
+  // Get the wish list item for the row
+  NSArray *wishlistItems = [[ItemStore sharedStore] allWishlistItems];
+  Item *wishlistItem = [wishlistItems objectAtIndex:[indexPath row]];
   
-  return [cell populateFromItem:item];
+  // Return the cell populated with the wishlist items
+  return [cell populateFromItem:wishlistItem];
   
   return cell;
 }

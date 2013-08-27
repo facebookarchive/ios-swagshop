@@ -11,6 +11,7 @@
 @interface Item : NSObject
 
 - (id)initWithNSDictionary:(NSDictionary *)object;
+- (instancetype)initWithFBObject:(NSDictionary *)object;
 
 @property (nonatomic, strong) NSData *itemImage;
 @property (nonatomic, strong) NSString *itemName;
