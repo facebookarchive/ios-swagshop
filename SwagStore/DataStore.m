@@ -52,83 +52,7 @@
       
       NSLog(@"making request");
       
-      //    FBRequestConnection *fbConnection = [[FBRequestConnection alloc] init];
-      //    FBRequest *request1 = [FBRequest requestWithGraphPath:@"me/fbswagshop:wishlist" parameters:nil HTTPMethod:@"GET"];
-      //    [fbConnection addRequest:request1
-      //           completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-      //             if (error) {
-      //               NSString *alertText;
-      //               alertText = [NSString stringWithFormat:@"error1: domain = %@, code = %d, description = %d, localized desc = %@", error.domain, error.code, error.description, [error localizedDescription]];
-      //               NSLog(alertText);
-      //             } else {
-      //               NSLog(result);
-      //             }
-      //
-      //           }
-      //            batchEntryName:@"get-actions"
-      //     ];
-      //
-      //    FBRequest *request2 = [FBRequest requestForGraphPath:@"?ids={result=get-actions:$.data.*.data.product.id}"];
-      //    [fbConnection addRequest:request2
-      //         completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-      //       if(error) {
-      //         NSString *alertText;
-      //         alertText = [NSString stringWithFormat:@"error2: domain = %@, code = %d", error.domain, error.code];
-      //         NSLog(alertText);
-      //       }
-      //       if (!error && result) {
-      //         // Parse reply //TO DO: what does that error:nil mean?
-      //         NSLog(@"request worked");
-      ////         NSArray *wishlistItems = [[[result objectAtIndex:1] objectForKey:@"body"] objectForKey:@"data"];
-      ////         for (id wishlistItem in wishlistItems){
-      ////           Item *item = [[Item alloc] initWithFBObject:wishlistItem];
-      ////           [_allWishlistItems addObject:item];
-      ////         }
-      //       }
-      //
-      //     }];
-      //
-      //    [fbConnection start];
-      
-      
-      
-      //      NSString *jsonRequest1 = @"{ \"method\": \"GET\", \"name\": \"get-actions\", \"relative_url\": \"me/fbswagshop:wishlist\"}"; //, \"omit_response_on_success\":true
-      //      NSString *jsonRequest2 = @"{ \"method\": \"GET\", \"relative_url\": \"?ids={result=get-actions:$.data.*.data.product.id}\" }";
-      //      NSString *jsonRequestsArray = [NSString stringWithFormat:@"[ %@, %@ ]", jsonRequest1, jsonRequest2];
-      //      NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:jsonRequestsArray forKey:@"batch"];
-      //
-      ////      [FBRequestConnection startWithGraphPath:@""
-      ////                                   parameters:params
-      ////                                   HTTPMethod:@"POST"
-      ////                            completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-      ////                              NSString *alertText;
-      //          [FBRequestConnection startWithGraphPath:@"me/fbswagshop:wishlist"
-      //                                completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-      //                                  NSString *alertText;
-      //                                  if (!error) {
-      //                                    NSLog(@"request for wishlist went ok");
-      //                                    // Parse reply //TO DO: what does that error:nil mean?
-      //                                    NSArray *actions = [result objectForKey:@"data"];
-      //                              if (!error) {
-      //                                NSLog(@"request for wishlist went ok");
-      ////                                // Parse reply //TO DO: what does that error:nil mean?
-      ////                                NSArray *wishlistItems = [[[result objectAtIndex:1] objectForKey:@"body"] objectForKey:@"data"];
-      ////                                for (id wishlistItem in wishlistItems){
-      ////                                  Item *item = [[Item alloc] initWithFBObject:wishlistItem];
-      ////                                  [_allWishlistItems addObject:item];
-      //                                }
-      //                              } else {
-      //                                alertText = [NSString stringWithFormat:@"error: domain = %@, code = %d", error.domain, error.code];
-      //                                NSLog(alertText);
-      //                              }
-      //
-      //                              // TO DO: error management
-      //                              //                              [[[UIAlertView alloc] initWithTitle:@"Result"
-      //                              //                                                          message:alertText
-      //                              //                                                         delegate:self
-      //                              //                                                cancelButtonTitle:@"OK!"
-      //                              //                                                otherButtonTitles:nil] show];
-      //                            }];
+
       
     
       FBRequestConnection *connection = [[FBRequestConnection alloc] init];
@@ -145,6 +69,8 @@
            NSLog(alertText);
          } else {
            NSLog(@" 1 went ok");
+           NSLog([NSString stringWithFormat:@"%@", result]);
+           
          }
        }
               batchEntryName:@"get-actions"
@@ -157,8 +83,13 @@
        ^(FBRequestConnection *connection, id result, NSError *error) {
          if (error){
            NSString *alertText;
-           alertText = [NSString stringWithFormat:@"error2: domain = %@, code = %d", error.domain, error.code];
+
+           NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
+           
+           alertText = [NSString stringWithFormat:@"error2: error code -> %d, error message -> %@", [error code], [errorInformation objectForKey:@"message"]];
+           
            NSLog(alertText);
+           
          } else if (!error &&  result) {
            NSLog(@"it went ok");
            for (id productObject in result) {
@@ -167,7 +98,7 @@
            }
          }
        }
-       
+      
        ];
       
       [connection start];
