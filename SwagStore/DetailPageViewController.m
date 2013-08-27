@@ -8,7 +8,7 @@
 
 #import "DetailPageViewController.h"
 #import "ItemDetailViewController.h"
-#import "ItemStore.h"
+#import "DataStore.h"
 #import "Item.h"
 
 @interface DetailPageViewController ()
