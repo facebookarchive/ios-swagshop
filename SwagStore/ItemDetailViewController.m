@@ -10,7 +10,8 @@
 
 #import "ItemDetailViewController.h"
 #import "Item.h"
-#import "OGProtocols.h"
+#import "AppDelegate.h"
+#import "ConfirmAddToWishlistViewController.h"
 
 @interface ItemDetailViewController ()
 
@@ -51,7 +52,7 @@
     
   _friendsAdded = 0;
     
-  id<OGProductObject> productObject = [self productObjectForItem:[self item]];
+  _productObject = [self productObjectForItem:[self item]];
     
   // Graph API request for friends' wishlist data
   [FBRequestConnection startWithGraphPath:@"/me/friends?fields=fbswagshop:wishlist"
@@ -64,7 +65,7 @@
       for (int i  = 0; i < [friend_wishlist_objects count]; i++) {
         NSString* friend_wishlist_object_url =
           [[[[friend_wishlist_objects objectAtIndex:i] objectForKey:@"data"] objectForKey:@"product"] objectForKey:@"url"];
-        if ([friend_wishlist_object_url isEqualToString:productObject.url]) {
+        if ([friend_wishlist_object_url isEqualToString:_productObject.url]) {
           _friendsAdded++;
           continue;
         }
@@ -77,59 +78,10 @@
   
 }
 
-- (void) setItem:(Item *)item {
+- (void) setItem:(Item *)item
+{
   _item = item;
   [[self navigationItem] setTitle:[[self item] itemName]];
-}
-
-- (IBAction)addToWishlist:(id)sender
-{
-  // Check for publish permissions
-   if ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] == NSNotFound) {
-     // Permission hasn't been granted, so ask for publish_actions
-     [FBSession openActiveSessionWithPublishPermissions:@[@"publish_actions"]
-                                        defaultAudience:FBSessionDefaultAudienceFriends
-                                           allowLoginUI:YES
-                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-                                        if (FBSession.activeSession.isOpen && !error) {
-                                          // Permission was granted, publish the OG story
-                                          [self publishStory];
-                                        } else {
-                                          // TO DO: Handle permission denied and errors
-                                        }
-                                      }];
-   } else {
-     // If permissions present, publish the OG story
-     [self publishStory];
-   }
-}
-
-- (void)publishStory
-{
-  // Create the OG product object for the item
-  id<OGProductObject> productObject = [self productObjectForItem:[self item]];
-  
-  // Now create an OG wishlist action with the product object
-  id<OGWishlistAction> action = (id<OGWishlistAction>)[FBGraphObject graphObject];
-  action.product = productObject;
-  
-  // Post the action to Facebook
-  [FBRequestConnection startForPostWithGraphPath:@"me/fbswagshop:wishlist"
-                                     graphObject:action
-                               completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-    NSString *alertText;
-    if (!error) {
-      alertText = [NSString stringWithFormat:@"Posted OG action, id: %@", [result objectForKey:@"id"]];
-    } else {
-      alertText = [NSString stringWithFormat:@"error: domain = %@, code = %d", error.domain, error.code];
-    }
-    // Show the result in an alert
-    [[[UIAlertView alloc] initWithTitle:@"Result"
-                                message:alertText
-                               delegate:self
-                      cancelButtonTitle:@"OK!"
-                      otherButtonTitles:nil] show];
-  }];
 }
 
 // Create a product UG object from an item
@@ -143,6 +95,16 @@
   product.url = [[self item] itemURL];
   
   return product;
+}
+
+- (IBAction)addToWishlist:(id)sender
+{
+  AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+  UIViewController *topViewController = [[appDelegate navigationController] topViewController];
+  
+  ConfirmAddToWishlistViewController* confirmCAddToWishlistViewController =
+  [[ConfirmAddToWishlistViewController alloc] initWithObject:_productObject item:_item];
+  [topViewController presentViewController:confirmCAddToWishlistViewController animated:NO completion:nil];
 }
 
 @end
