@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameField;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionField;
 @property (weak, nonatomic) IBOutlet UILabel *valueField;
-@property (weak, nonatomic) IBOutlet UILabel *friendsField;
 @property (weak, nonatomic) IBOutlet UIButton *addToWishlist;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
@@ -49,32 +48,8 @@
   [[self valueField] setText:[NSString stringWithFormat:@"$%d", [item itemPrice]]];
   UIImage *image = [UIImage imageWithData:[item itemImage]];
   [[self imageView] setImage:image];
-    
-  _friendsAdded = 0;
-    
+  
   _productObject = [self productObjectForItem:[self item]];
-    
-  // Graph API request for friends' wishlist data
-  [FBRequestConnection startWithGraphPath:@"/me/friends?fields=fbswagshop:wishlist"
-                        completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-    NSArray* friends_wishlists = (NSArray*)[result data];
-                            
-    // Iterate over friends' wishlist and only add if has matching object.
-    for (int i = 0; i < [friends_wishlists count]; i++) {
-      NSArray* friend_wishlist_objects = [[[friends_wishlists objectAtIndex:i] objectForKey:@"fbswagshop:wishlist"] objectForKey:@"data"];
-      for (int i  = 0; i < [friend_wishlist_objects count]; i++) {
-        NSString* friend_wishlist_object_url =
-          [[[[friend_wishlist_objects objectAtIndex:i] objectForKey:@"data"] objectForKey:@"product"] objectForKey:@"url"];
-        if ([friend_wishlist_object_url isEqualToString:_productObject.url]) {
-          _friendsAdded++;
-          continue;
-        }
-      }
-    }
-           
-    [[self friendsField] setText:[NSString stringWithFormat:@"%d of your friends wishlisted this.", _friendsAdded]];
-                            
-  }];
   
 }
 
