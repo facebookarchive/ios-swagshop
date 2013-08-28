@@ -19,7 +19,6 @@
       // Give the instance variables initial values
       [self setItemName:[object objectForKey:@"title"]];
       [self setItemDescription:[object objectForKey:@"description"]];
-      [self setItemPrice:[[[[object objectForKey:@"offer"] objectForKey:@"USD"] objectForKey:@"price"] intValue]];
       [self setItemURL:[object objectForKey:@"link"]];
       NSDictionary *image = [[object objectForKey:@"images"] objectForKey:@"800"];
       NSURL *imageURL = [NSURL URLWithString:[image objectForKey:@"url"]];

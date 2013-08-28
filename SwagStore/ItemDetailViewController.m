@@ -17,7 +17,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *nameField;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionField;
-@property (weak, nonatomic) IBOutlet UILabel *valueField;
 @property (weak, nonatomic) IBOutlet UIButton *addToWishlist;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
@@ -44,8 +43,6 @@
   [[self descriptionField] sizeToFit];
   [[self nameField] setText:[item itemName]];
   [[self descriptionField] setText:[item itemDescription]];
-  [self valueField].textAlignment = NSTextAlignmentCenter;
-  [[self valueField] setText:[NSString stringWithFormat:@"$%d", [item itemPrice]]];
   UIImage *image = [UIImage imageWithData:[item itemImage]];
   [[self imageView] setImage:image];
   
