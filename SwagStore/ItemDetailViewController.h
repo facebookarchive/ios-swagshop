@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "OGProtocols.h"
+
 @class Item;
 
 @interface ItemDetailViewController : UIViewController
 @property (nonatomic, strong) Item *item;
 @property (nonatomic) NSUInteger friendsAdded;
+@property (nonatomic, strong) id<OGProductObject> productObject;
 
 @end
