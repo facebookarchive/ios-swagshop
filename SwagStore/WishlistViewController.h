@@ -10,6 +10,8 @@
 
 @interface WishlistViewController : UITableViewController
 
+- (instancetype)initWithWishlistItemsArray:(NSMutableArray *)wishlistItemsArray;
+
 @end
 
 
