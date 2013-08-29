@@ -12,12 +12,8 @@
 
 @interface ItemStore : NSObject
 
-- (void)removeWishlistItem:(Item *)item;
-
-
 + (ItemStore *)sharedStore;
 
 @property (nonatomic, strong, readonly) NSArray *allItems;
-@property (nonatomic, strong, readonly) NSArray *allWishlistItems;
 
 @end
