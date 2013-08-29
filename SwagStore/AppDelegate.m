@@ -37,6 +37,10 @@
     _navigationController = [[UINavigationController alloc]
                                                     initWithRootViewController:_itemListViewController];
   
+    // Add empty footer to prevent empty rows from showing
+    UIView *tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    _itemListViewController.tableView.tableFooterView = tableFooterView;
+  
     //Place ItemListViewController's table view in the window hierarchy
     [[self window] setRootViewController:_navigationController];
   
@@ -62,7 +66,7 @@
 {
   NSLog(@"opening session");
   
-  [FBSession openActiveSessionWithReadPermissions:@[]
+  [FBSession openActiveSessionWithReadPermissions:@[@"user_actions:fbswagshop"]
                                      allowLoginUI:NO
                                 completionHandler:
    ^(FBSession *session, FBSessionState state, NSError *error) {
@@ -88,15 +92,13 @@
   return wasHandled;
 }
 
-
-// Do we need this code????
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
   // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
   
   // We need to properly handle activation of the application with regards to Facebook Login
   // (e.g., returning from iOS 6.0 Login Dialog or from fast app switching).
-  [FBSession.activeSession handleDidBecomeActive];
+  [FBAppCall handleDidBecomeActive];
 }
 
 @end

@@ -39,11 +39,6 @@
   return self;
 }
 
-- (instancetype)initWithStyle:(UITableViewStyle)style
-{
-  return [self init];
-}
-
 - (void) viewDidLoad
 {
   [super viewDidLoad];
