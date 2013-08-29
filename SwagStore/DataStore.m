@@ -10,18 +10,17 @@
 
 #import "DataStore.h"
 #import "Item.h"
+#import "AppDelegate.h"
 
 @interface ItemStore()
 {
   NSMutableArray *_allItems;
-  NSMutableArray *_allWishlistItems;
 }
 @end
 
 @implementation ItemStore
 
 @synthesize allItems = _allItems;
-@synthesize allWishlistItems = _allWishlistItems;
 
 - (instancetype)init
 {
@@ -46,96 +45,10 @@
       [_allItems addObject:item];
     }
       
-    if (FBSession.activeSession.isOpen) {
-      
-      // TO DO: check for the permissions to do this!!
-      
-      // Retrieve all the OG actions ("add to wishlist" actions the user performed within this app)
-      _allWishlistItems = [[NSMutableArray alloc] init];
-      
-      NSLog(@"making request");
-      
-
-      
-    
-      FBRequestConnection *connection = [[FBRequestConnection alloc] init];
-      
-      // First request gets the wishlist actions
-      FBRequest *request1 =
-      [FBRequest requestForGraphPath:@"me/fbswagshop:wishlist"];
-      [connection addRequest:request1
-           completionHandler:
-       ^(FBRequestConnection *connection, id result, NSError *error) {
-         if (error) {
-           NSString *alertText;
-           alertText = [NSString stringWithFormat:@"error1: domain = %@, code = %d", error.domain, error.code];
-           NSLog(alertText);
-         } else {
-           NSLog(@" 1 went ok");
-           NSLog([NSString stringWithFormat:@"%@", result]);
-           
-         }
-       }
-              batchEntryName:@"get-actions"
-       ];
-      
-      // Second request gets the product details
-      FBRequest *request2 = [FBRequest requestForGraphPath:@"?ids={result=get-actions:$.data.*.data.product.id}"];
-      [connection addRequest:request2
-           completionHandler:
-       ^(FBRequestConnection *connection, id result, NSError *error) {
-         if (error){
-           NSString *alertText;
-
-           NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
-           
-           alertText = [NSString stringWithFormat:@"error2: error code -> %d, error message -> %@", [error code], [errorInformation objectForKey:@"message"]];
-           
-           NSLog(alertText);
-           
-         } else if (!error &&  result) {
-           NSLog(@"it went ok");
-           for (id productObject in result) {
-             Item *item = [[Item alloc] initWithFBObject:productObject];
-             [_allWishlistItems addObject:item];
-           }
-         }
-       }
-      
-       ];
-      
-      [connection start];
-      
-    }
   }
   
   return self;
 }
-
-- (void)request:(FBRequest *)request didLoad:(id)result {
-  NSArray *allResponses = result;
-  for ( int i=0; i < [allResponses count]; i++ ) {
-    NSDictionary *response = [allResponses objectAtIndex:i];
-    int httpCode = [[response objectForKey:@"code"] intValue];
-    NSString *jsonResponse = [response objectForKey:@"body"];
-    if ( httpCode != 200 ) {
-      NSLog( @"Facebook request error: code: %d  message: %@", httpCode, jsonResponse );
-    } else {
-      NSLog( @"Facebook response: %@", jsonResponse );
-    }
-  }
-}
-
-// For testing purposes, a function to remove an item - this SHOULD NOT EXIST
-- (void)removeWishlistItem:(Item *)item
-{
-  // TO DO: remove the item from the OG actions on FB
-  
-  
-  // Remove the item from the wish list array
-  [_allWishlistItems removeObjectIdenticalTo:item];
-}
-//
 
 + (ItemStore *)sharedStore
 {
@@ -150,6 +63,5 @@
 {
   return [self sharedStore];
 }
-
 
 @end
