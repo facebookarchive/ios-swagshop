@@ -75,6 +75,7 @@
         [self userLoggedIn];
       } else {
         // If failed, clear this token
+        NSLog(@"opening session failed");
         [FBSession.activeSession closeAndClearTokenInformation];
         [self userLoggedOut];
      }

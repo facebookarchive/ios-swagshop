@@ -248,18 +248,15 @@
          [self showMessage:alertText withTitle:alertTitle];
        }
      } else {
-       NSLog([NSString stringWithFormat:@"%@", result]);
        NSMutableArray *pastOGActions = [[NSMutableArray alloc] initWithArray:@[]];
        for (id action in [result objectForKey:@"data"]){
          [pastOGActions addObject:[[[action objectForKey:@"data"] objectForKey:@"product"] objectForKey:@"id"]];
        }
-       NSLog([NSString stringWithFormat:@"%@", pastOGActions]);
        
        if ([pastOGActions count] > 0){
          // Second request gets the product details
          
          NSLog(@"making request #2");
-         
          FBRequestConnection *connection = [[FBRequestConnection alloc] init];
          
          NSString *idString = [NSString stringWithFormat:@"?ids=%@", [pastOGActions componentsJoinedByString:@","]];
@@ -297,6 +294,9 @@
           }
           ];
          [connection start];
+       } else {
+         _wishlistViewController = [[WishlistViewController alloc] initWithWishlistItemsArray:@[]];
+         [[self navigationController] pushViewController:_wishlistViewController animated:YES];
        }
      }
    }
