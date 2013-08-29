@@ -12,7 +12,6 @@
 #import "DataStore.h"
 #import "Item.h"
 #import "ItemDetailViewController.h"
-#import "SettingsLoginViewController.h"
 #import "SettingsViewController.h"
 #import "ItemCell.h"
 #import "DetailPageViewController.h"
