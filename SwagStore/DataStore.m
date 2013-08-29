@@ -47,6 +47,9 @@
     }
       
     if (FBSession.activeSession.isOpen) {
+      
+      // TO DO: check for the permissions to do this!!
+      
       // Retrieve all the OG actions ("add to wishlist" actions the user performed within this app)
       _allWishlistItems = [[NSMutableArray alloc] init];
       

@@ -19,5 +19,6 @@
 - (void)facebookSessionStateChanged:(FBSession *)session
                               state:(FBSessionState) state
                               error:(NSError *)error;
-
+- (void)userLoggedOut;
+- (void)userLoggedIn;
 @end

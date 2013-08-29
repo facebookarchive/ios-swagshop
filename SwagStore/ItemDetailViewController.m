@@ -39,8 +39,6 @@
 {
   [super viewWillAppear:(BOOL)animated];
   Item *item = [self item];
-  [self descriptionField].numberOfLines = 0;
-  [[self descriptionField] sizeToFit];
   [[self nameField] setText:[item itemName]];
   [[self descriptionField] setText:[item itemDescription]];
   UIImage *image = [UIImage imageWithData:[item itemImage]];

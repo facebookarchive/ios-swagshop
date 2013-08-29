@@ -43,7 +43,6 @@
     
     // Set the currentPage to page
     _currentPage = page;
-    NSLog([NSString stringWithFormat:@"init with %d", _currentPage]);
     
     // Set the itemDetailViewController for the currentPage within the detailPageViewController
     NSArray *detailArray = [[NSArray alloc] initWithObjects:[self itemDetailViewControllerForPage:_currentPage], nil];
@@ -60,8 +59,6 @@
 {
   // Decrease the page
   _currentPage = (_currentPage + [_items count] - 1) % [_items count];
-  NSLog([NSString stringWithFormat:@"page decreased to %d", _currentPage]);
-  
   return [self itemDetailViewControllerForPage:_currentPage];
 }
 
@@ -69,8 +66,6 @@
 {
   // Increase the page
   _currentPage = (_currentPage + 1) % [_items count];
-  NSLog([NSString stringWithFormat:@"page increased to %d", _currentPage]);
-  
   return [self itemDetailViewControllerForPage:_currentPage];
 }
 
