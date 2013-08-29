@@ -46,6 +46,7 @@
   
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+
     return YES;
 }
 
@@ -66,20 +67,20 @@
 {
   NSLog(@"opening session");
   
-  [FBSession openActiveSessionWithReadPermissions:@[@"user_actions:fbswagshop"]
+  [FBSession openActiveSessionWithReadPermissions:@[]
                                      allowLoginUI:NO
-                                completionHandler:
-   ^(FBSession *session, FBSessionState state, NSError *error) {
-     if (!error && state == FBSessionStateOpen){
-        NSLog(@"session opened");
-        [self userLoggedIn];
-      } else {
-        // If failed, clear this token
-        NSLog(@"opening session failed");
-        [FBSession.activeSession closeAndClearTokenInformation];
-        [self userLoggedOut];
-     }
-   }];
+                                completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                  if (!error && state == FBSessionStateOpen){
+                                      NSLog(@"session opened");
+                                      [self userLoggedIn];
+                                  } else {
+                                    // If failed, clear this token
+                                    NSLog(@"opening session failed");
+                                    [FBSession.activeSession closeAndClearTokenInformation];
+                                    [self userLoggedOut];
+                                  }
+                                }];
+  //NSLog([NSString stringWithFormat:@"session opened? %@", fbsession]);
 }
 
 // Call the Facebook session object that handles the incoming URL, after control is returned to Swag Shop by the Facebook app
