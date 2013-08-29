@@ -30,6 +30,10 @@
       UINavigationItem *nI = [self navigationItem];
       [nI setTitle:@"Wishlist"];
       
+      // Add empty footer to prevent empty rows from showing
+      UIView *tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+      self.tableView.tableFooterView = tableFooterView;
+      
       // Add "Edit wishlist" button
       UIBarButtonItem *editWishlistButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
                                                                              style:UIBarButtonItemStylePlain

@@ -76,18 +76,20 @@
     [self checkPublishPermissionsAndPublish];
   } else {
     // There's no open session, open one
-    [FBSession openActiveSessionWithReadPermissions:@[@"user_actions:fbswagshop",@"friends_actions:fbswagshop"]
+    [FBSession openActiveSessionWithReadPermissions:@[]
                                        allowLoginUI:YES
                                   completionHandler:
      ^(FBSession *session, FBSessionState state, NSError *error) {
        __block NSString *alertText;
        __block NSString *alertTitle;
        if (!error){
-         // If the session was opened successfully...
          
+         // If the session was opened successfully...
+         if (state == FBSessionStateOpen){
          // Go through the general session handling process
          AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-         [appDelegate facebookSessionStateChanged:session state:state error:error];
+         [appDelegate userLoggedIn];
+         }
          
          // Then, check for permissions to publish the action
          [self checkPublishPermissionsAndPublish];
