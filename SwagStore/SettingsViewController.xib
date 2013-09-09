@@ -38,7 +38,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GIj-az-Bms">
-                    <rect key="frame" x="53" y="256" width="216" height="44"/>
+                    <rect key="frame" x="53" y="261" width="216" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.27579173811053898" green="0.7124684250699852" blue="0.72118144132653061" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -51,7 +51,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" id="Llr-eK-FL4" customClass="FBLoginView">
-                    <rect key="frame" x="52" y="186" width="205" height="44"/>
+                    <rect key="frame" x="52" y="193" width="205" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <connections>
