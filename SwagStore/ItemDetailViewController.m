@@ -46,6 +46,9 @@
   
   _productObject = [self productObjectForItem:[self item]];
   
+  [FBAppEvents logEvent:FBAppEventNameViewedContent
+    parameters:@{FBAppEventParameterNameContentID:[item itemSKU]}];
+  
 }
 
 - (void) setItem:(Item *)item
