@@ -20,6 +20,7 @@
       [self setItemName:[object objectForKey:@"title"]];
       [self setItemDescription:[object objectForKey:@"description"]];
       [self setItemURL:[object objectForKey:@"link"]];
+      [self setItemSKU:[object objectForKey:@"sku"]];
       NSDictionary *image = [[object objectForKey:@"images"] objectForKey:@"800"];
       NSURL *imageURL = [NSURL URLWithString:[image objectForKey:@"url"]];
       NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
@@ -39,6 +40,7 @@
     [self setItemName:[object objectForKey:@"title"]];
     [self setItemDescription:[object objectForKey:@"description"]];
     [self setItemURL:[object objectForKey:@"url"]];
+    [self setItemSKU:[[object objectForKey:@"data"] objectForKey:@"retailer_part_no"]];
     NSDictionary *image = [[object objectForKey:@"image"] objectAtIndex:0];
     NSURL *imageURL = [NSURL URLWithString:[image objectForKey:@"url"]];
     NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
