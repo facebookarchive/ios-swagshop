@@ -221,6 +221,8 @@
                                    alertText = @"The item has been successfully added to your wishlist!";
                                    alertTitle = @"";
                                    [self showMessage:alertText withTitle:alertTitle];
+                                   [FBAppEvents logEvent:FBAppEventNameAddedToWishlist
+                                              parameters:@{FBAppEventParameterNameContentID:[_item itemSKU]}];
                                  } else {
                                    // An error occurred
                                    if (error.fberrorShouldNotifyUser == YES){
