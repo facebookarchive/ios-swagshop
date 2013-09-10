@@ -76,7 +76,7 @@
     [self checkPublishPermissionsAndPublish];
   } else {
     // There's no open session, open one
-    [FBSession openActiveSessionWithReadPermissions:@[]
+    [FBSession openActiveSessionWithReadPermissions:@[@"basic_info"]
                                        allowLoginUI:YES
                                   completionHandler:
      ^(FBSession *session, FBSessionState state, NSError *error) {

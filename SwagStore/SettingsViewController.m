@@ -120,7 +120,7 @@
     [self checkPermissionsAndReadActions];
   } else {
     // There's no open session, open one
-    [FBSession openActiveSessionWithReadPermissions:@[@"user_actions:fbswagshop"]
+    [FBSession openActiveSessionWithReadPermissions:@[@"basic_info", @"user_actions:fbswagshop"]
                                        allowLoginUI:YES
                                   completionHandler:
      ^(FBSession *session, FBSessionState state, NSError *error) {
