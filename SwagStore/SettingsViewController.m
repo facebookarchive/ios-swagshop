@@ -77,18 +77,18 @@
 // Detect and respond to login errors
 - (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
   NSString *alertMessage, *alertTitle;
-  if (error.fberrorShouldNotifyUser) {
+  if ([FBErrorUtility shouldNotifyUserForError:error]) {
     // If the SDK has a message for the user, surface it. This conveniently
     // handles cases like password change or iOS6 app slider state.
     alertTitle = @"Facebook Error";
-    alertMessage = error.fberrorUserMessage;
-  } else if (error.fberrorCategory == FBErrorCategoryAuthenticationReopenSession) {
+    alertMessage = [FBErrorUtility userMessageForError:error];
+  } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryAuthenticationReopenSession) {
     // It is important to handle session closures since they can happen
     // outside of the app. You can inspect the error for more context
     // but this sample generically notifies the user.
     alertTitle = @"Session Error";
     alertMessage = @"Your current session is no longer valid. Please log in again.";
-  } else if (error.fberrorCategory == FBErrorCategoryUserCancelled) {
+  } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
     // The user has cancelled a login. You can inspect the error
     // for more context. For this sample, we will simply ignore it.
     NSLog(@"user cancelled login");
@@ -138,14 +138,14 @@
          [self readActions];
        } else {
          // Handle errors
-         if (error.fberrorShouldNotifyUser == YES){
+         if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
            // Error requires people using an app to make an out-of-band action to recover
            alertTitle = @"Something went wrong :S";
-           alertText = [NSString stringWithString:error.fberrorUserMessage];
+           alertText = [FBErrorUtility userMessageForError:error];
            [self showMessage:alertText withTitle:alertTitle];
          } else {
            // We need to handle the error
-           if (error.fberrorCategory == FBErrorCategoryUserCancelled) {
+           if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
              alertTitle = @"Login cancelled";
              alertText = @"You need to login to be able to save to your wishlist.";
              [self showMessage:alertText withTitle:alertTitle];
@@ -186,14 +186,14 @@
                                                                    [self readActions];
                                                                  } else {
                                                                    // An error occurred
-                                                                   if (error.fberrorShouldNotifyUser == YES){
+                                                                   if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
                                                                      // Error requires people using an app to make an out-of-band action to recover
                                                                      alertTitle = @"Something went wrong :S";
-                                                                     alertText = [NSString stringWithString:error.fberrorUserMessage];
+                                                                     alertText = [FBErrorUtility userMessageForError:error];
                                                                      [self showMessage:alertText withTitle:alertTitle];
                                                                    } else {
                                                                      // We need to handle the error
-                                                                     if (error.fberrorCategory == FBErrorCategoryUserCancelled) {
+                                                                     if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
                                                                        alertTitle = @"Permission not granted";
                                                                        alertText = @"You need to let Swag Shop access your past actions on Swag Shop in order to see your wishlist.";
                                                                        [self showMessage:alertText withTitle:alertTitle];
@@ -238,10 +238,10 @@
      if (error) {
        NSString *alertText;
        NSString *alertTitle;
-       if (error.fberrorShouldNotifyUser == YES){
+       if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
          // Error requires people using an app to make an out-of-band action to recover
          alertTitle = @"Something went wrong :S";
-         alertText = [NSString stringWithString:error.fberrorUserMessage];
+         alertText = [FBErrorUtility userMessageForError:error];
          [self showMessage:alertText withTitle:alertTitle];
        } else {
          NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
@@ -273,10 +273,10 @@
             if (error){
               NSString *alertText;
               NSString *alertTitle;
-              if (error.fberrorShouldNotifyUser == YES){
+              if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
                 // Error requires people using an app to make an out-of-band action to recover
                 alertTitle = @"Something went wrong";
-                alertText = [NSString stringWithString:error.fberrorUserMessage];
+                alertText = [FBErrorUtility userMessageForError:error];
                 [self showMessage:alertText withTitle:alertTitle];
               } else {
                 NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];

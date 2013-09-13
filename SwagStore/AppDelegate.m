@@ -24,6 +24,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
   
+    //Load the SDK classes so we can use it later
+    [FBLoginView class];
+    [FBProfilePictureView class];
+  
     // Whenever a person opens the app, check for a cached session
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
       // If there's one, just open the session silently
