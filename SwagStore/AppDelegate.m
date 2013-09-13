@@ -27,6 +27,7 @@
     // Whenever a person opens the app, check for a cached session
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
       // If there's one, just open the session silently
+      NSLog(@"FBSessionStateCreatedTokenLoaded");
       [self openFacebookSession];
     }
   
@@ -67,20 +68,19 @@
 {
   NSLog(@"opening session");
   
-  [FBSession openActiveSessionWithReadPermissions:@[]
+  [FBSession openActiveSessionWithReadPermissions:@[@"basic_info"]
                                      allowLoginUI:NO
                                 completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                   if (!error && state == FBSessionStateOpen){
                                       NSLog(@"session opened");
                                       [self userLoggedIn];
-                                  } else {
+                                  } else if (error){
                                     // If failed, clear this token
-                                    NSLog(@"opening session failed");
+                                    NSLog(@"session opening error");
                                     [FBSession.activeSession closeAndClearTokenInformation];
                                     [self userLoggedOut];
                                   }
                                 }];
-  //NSLog([NSString stringWithFormat:@"session opened? %@", fbsession]);
 }
 
 // Call the Facebook session object that handles the incoming URL, after control is returned to Swag Shop by the Facebook app

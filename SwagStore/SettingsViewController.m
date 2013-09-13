@@ -129,7 +129,7 @@
        __block NSString *alertText;
        __block NSString *alertTitle;
        // If the session was opened successfully...
-       if (!error && state == FBSessionStateOpen){
+       if (!error && (state == FBSessionStateOpen || state == FBSessionStateOpenTokenExtended)){
          // Go through the general session handling process
          AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
          [appDelegate userLoggedIn];
