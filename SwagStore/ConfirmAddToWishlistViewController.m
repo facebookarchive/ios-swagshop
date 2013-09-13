@@ -95,14 +95,14 @@
          [self checkPublishPermissionsAndPublish];
        } else {
          // Handle errors
-         if (error.fberrorShouldNotifyUser == YES){
+         if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
            // Error requires people using an app to make an out-of-band action to recover
            alertTitle = @"Something went wrong :S";
-           alertText = [NSString stringWithString:error.fberrorUserMessage];
+           alertText = [FBErrorUtility userMessageForError:error];
            [self showMessage:alertText withTitle:alertTitle];
          } else {
            // We need to handle the error
-           if (error.fberrorCategory == FBErrorCategoryUserCancelled) {
+           if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
              alertTitle = @"Login cancelled";
              alertText = @"You need to login to be able to save to your wishlist.";
              [self showMessage:alertText withTitle:alertTitle];
@@ -152,14 +152,14 @@
                                                                       
                                                                     } else {
                                                                       // An error occurred
-                                                                      if (error.fberrorShouldNotifyUser == YES){
+                                                                      if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
                                                                         // Error requires people using an app to make an out-of-band action to recover
                                                                         alertTitle = @"Something went wrong :S";
-                                                                        alertText = [NSString stringWithString:error.fberrorUserMessage];
+                                                                        alertText = [FBErrorUtility userMessageForError:error];
                                                                         [self showMessage:alertText withTitle:alertTitle];
                                                                       } else {
                                                                         // We need to handle the error
-                                                                        if (error.fberrorCategory == FBErrorCategoryUserCancelled) {
+                                                                        if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
                                                                           alertTitle = @"Permission not granted";
                                                                           alertText = @"The item will not be saved to your wishlist.";
                                                                           [self showMessage:alertText withTitle:alertTitle];
@@ -225,10 +225,10 @@
                                               parameters:@{FBAppEventParameterNameContentID:[_item itemSKU]}];
                                  } else {
                                    // An error occurred
-                                   if (error.fberrorShouldNotifyUser == YES){
+                                   if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
                                      // Error requires people using an app to make an out-of-band action to recover
                                      alertTitle = @"Something went wrong :S";
-                                     alertText = [NSString stringWithString:error.fberrorUserMessage];
+                                     alertText = [FBErrorUtility userMessageForError:error];
                                      [self showMessage:alertText withTitle:alertTitle];
                                    } else {
                                      // We need to handle the error

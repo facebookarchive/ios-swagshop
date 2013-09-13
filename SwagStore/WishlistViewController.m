@@ -132,10 +132,10 @@
         if (error) {
           NSString *alertText;
           NSString *alertTitle;
-          if (error.fberrorShouldNotifyUser == YES){
+          if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
             // Error requires people using an app to make an out-of-band action to recover
             alertTitle = @"Something went wrong :S";
-            alertText = [NSString stringWithString:error.fberrorUserMessage];
+            alertText = [FBErrorUtility userMessageForError:error];
             [self showMessage:alertText withTitle:alertTitle];
           } else {
             NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];            
