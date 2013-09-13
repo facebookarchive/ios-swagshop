@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Facebook Inc. All rights reserved.
 //
 
+#import <FacebookSDK/FacebookSDK.h>
+
 #import "WishlistViewController.h"
 #import "ItemCell.h"
 #import "SettingsViewController.h"
@@ -17,14 +19,17 @@
 
 @property UIBarButtonItem *editWishlistButton;
 @property NSMutableArray *wishlistItemsArray;
+@property NSMutableArray *wishlistActionsArray;
 
 @end
 
 @implementation WishlistViewController
 
-- (instancetype)initWithWishlistItemsArray:(NSMutableArray *)wishlistItemsArray
+- (instancetype)initWithWishlistItemsArray:(NSMutableArray *)wishlistItemsArray WishlistActionsArray:(NSMutableArray *)wishlistActionsArray
 {
   _wishlistItemsArray = wishlistItemsArray;
+  _wishlistActionsArray = wishlistActionsArray;
+  NSLog([NSString stringWithFormat:@"wishlistActionsArray %@", wishlistActionsArray]);
   self = [self init];
   if (self) {
     // Set the viewTitle
@@ -65,14 +70,9 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
   // If the table view is asking to commit a delete command
-  if (editingStyle == UITableViewCellEditingStyleDelete) {
-    
+  if (editingStyle == UITableViewCellEditingStyleDelete) {  
     // Remove the item from the wish list
-    Item *wishlistItem = [_wishlistItemsArray objectAtIndex:[indexPath row]];
-    [self removeWishlistItem:wishlistItem];
-    
-    // Remove the cell from the table
-    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self removeWishlistItemWithIndexPath:indexPath fromTable:tableView];
   }
 }
 
@@ -111,11 +111,60 @@
 }
 
 // Removes an item from _allWishListItems and from the user's OG action history on Facebook
-- (void)removeWishlistItem:(Item *)item
+- (void)removeWishlistItemWithIndexPath:(NSIndexPath *)indexPath fromTable:(UITableView *)tableView
 {
-  // TO DO: remove the item from the OG actions on FB
   
+  NSLog(@"removeWishlistItem");
+  // TO DO: remove the item from the wishlist, to do this we need to remove the OG action connected with that OG object on Facebook
+  // Obtain the FBID of the OG object associated with the item
+  Item *item = [_wishlistItemsArray objectAtIndex:[indexPath row]];
+  NSString *productId = [item itemFBID];
+  NSLog([NSString stringWithFormat:@"product id %@", productId]);
+  // Find the FBID of the OG action connected with that OG Object
+  __block BOOL actionDeleted = NO;
+  for (id action in _wishlistActionsArray) {
+    if ([[NSString stringWithFormat:@"%@", [[[action objectForKey:@"data"] objectForKey:@"product"] objectForKey:@"id"]] isEqualToString:productId]) {
+      NSLog(@"found an item to delete");
+      //Make an HTTP DELETE request with the OG action's FBID
+      [FBRequestConnection startForDeleteObject:[action objectForKey:@"id"]
+                     completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        NSLog(@"finished request");
+        if (error) {
+          NSString *alertText;
+          NSString *alertTitle;
+          if (error.fberrorShouldNotifyUser == YES){
+            // Error requires people using an app to make an out-of-band action to recover
+            alertTitle = @"Something went wrong :S";
+            alertText = [NSString stringWithString:error.fberrorUserMessage];
+            [self showMessage:alertText withTitle:alertTitle];
+          } else {
+            NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];            
+            // Show the user an error message
+            alertTitle = @"Something went wrong #1";
+            alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
+            [self showMessage:alertText withTitle:alertTitle];
+          }
+        } else {
+          // Remove the action from the wishlistActionsArray
+          [_wishlistActionsArray removeObject:action];
+          // Remove the object from the wishlistItemsArray
+          [_wishlistItemsArray removeObject:item];
+          // Remove the item's row from the table
+          [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+      }];
+      break;
+    }
+  }
 }
-
-
+       
+ - (void)showMessage:(NSString *)text withTitle:(NSString *)title
+{
+  [[[UIAlertView alloc] initWithTitle:title
+                              message:text
+                             delegate:self
+                    cancelButtonTitle:@"OK!"
+                    otherButtonTitles:nil] show];
+}
+    
 @end
