@@ -21,6 +21,8 @@
 
 @property NSMutableArray *wishlistItemsArray;
 @property WishlistViewController *wishlistViewController;
+@property NSMutableArray *pastOGActions;
+@property NSMutableArray *pastOGObjects;
 
 @end
 
@@ -250,18 +252,20 @@
          [self showMessage:alertText withTitle:alertTitle];
        }
      } else {
-       NSMutableArray *pastOGActions = [[NSMutableArray alloc] initWithArray:@[]];
+       _pastOGActions = [[NSMutableArray alloc] initWithArray:@[]];
+       _pastOGObjects = [[NSMutableArray alloc] initWithArray:@[]];
        for (id action in [result objectForKey:@"data"]){
-         [pastOGActions addObject:[[[action objectForKey:@"data"] objectForKey:@"product"] objectForKey:@"id"]];
+         [_pastOGActions addObject:action];
+         [_pastOGObjects addObject:[[[action objectForKey:@"data"] objectForKey:@"product"] objectForKey:@"id"]];
        }
        
-       if ([pastOGActions count] > 0){
+       if ([_pastOGActions count] > 0){
          // Second request gets the product details
          
          NSLog(@"making request #2");
          FBRequestConnection *connection = [[FBRequestConnection alloc] init];
          
-         NSString *idString = [NSString stringWithFormat:@"?ids=%@", [pastOGActions componentsJoinedByString:@","]];
+         NSString *idString = [NSString stringWithFormat:@"?ids=%@", [_pastOGObjects componentsJoinedByString:@","]];
          FBRequest *request2 = [FBRequest requestForGraphPath:idString];
          [connection addRequest:request2
               completionHandler:
@@ -290,14 +294,14 @@
                 [_wishlistItemsArray addObject:item];
               }
               NSLog([NSString stringWithFormat:@"wishlistItemArray when done with the call %@", _wishlistItemsArray]);
-              _wishlistViewController = [[WishlistViewController alloc] initWithWishlistItemsArray:_wishlistItemsArray];
+              _wishlistViewController = [[WishlistViewController alloc] initWithWishlistItemsArray:_wishlistItemsArray WishlistActionsArray:_pastOGActions];
               [[self navigationController] pushViewController:_wishlistViewController animated:YES];
             }
           }
           ];
          [connection start];
        } else {
-         _wishlistViewController = [[WishlistViewController alloc] initWithWishlistItemsArray:@[]];
+         _wishlistViewController = [[WishlistViewController alloc] initWithWishlistItemsArray:@[] WishlistActionsArray:@[]];
          [[self navigationController] pushViewController:_wishlistViewController animated:YES];
        }
      }

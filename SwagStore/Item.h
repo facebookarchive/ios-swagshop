@@ -13,6 +13,7 @@
 - (id)initWithNSDictionary:(NSDictionary *)object;
 - (instancetype)initWithFBObject:(NSDictionary *)object;
 
+@property (nonatomic, strong) NSString *itemFBID;
 @property (nonatomic, strong) NSData *itemImage;
 @property (nonatomic, strong) NSString *itemName;
 @property (nonatomic, strong) NSString *itemDescription;

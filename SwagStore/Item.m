@@ -17,6 +17,10 @@
     // Did the superclass's designated initializer succeed?
     if (self) {
       // Give the instance variables initial values
+      [self setItemFBID:nil];
+      if ([object objectForKey:@"fbid"]){
+        [self setItemName:[object objectForKey:@"fbid"]];
+      }
       [self setItemName:[object objectForKey:@"title"]];
       [self setItemDescription:[object objectForKey:@"description"]];
       [self setItemURL:[object objectForKey:@"link"]];
@@ -37,6 +41,7 @@
   // Did the superclass's designated initializer succeed?
   if (self) {
     // Give the instance variables initial values
+    [self setItemFBID:[object objectForKey:@"id"]];
     [self setItemName:[object objectForKey:@"title"]];
     [self setItemDescription:[object objectForKey:@"description"]];
     [self setItemURL:[object objectForKey:@"url"]];
