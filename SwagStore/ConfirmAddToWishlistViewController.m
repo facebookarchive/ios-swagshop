@@ -234,7 +234,7 @@
                                      // We need to handle the error
                                      //Get more error information from the error
                                      int errorCode = error.code;
-                                     NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
+                                     NSDictionary *errorInformation = [[[[error userInfo] objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
                                      int errorSubcode = 0;
                                      if ([errorInformation objectForKey:@"code"]){
                                        errorSubcode = [[errorInformation objectForKey:@"code"] integerValue];
@@ -242,6 +242,7 @@
                                      /* We allow the user to add a particular item to their wishlist only once,
                                       trying to add an item twice will throw an error */
                                      if (errorCode == 5 && errorSubcode == 3501) {
+                                       NSLog([NSString stringWithFormat:@"%@", [error userInfo]]);
                                        // Show the user an error message
                                        alertTitle = @"";
                                        alertText = @"This item is already in your wishlist. You cannot add an item more than once.";

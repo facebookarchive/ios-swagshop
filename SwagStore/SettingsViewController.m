@@ -149,6 +149,10 @@
              alertTitle = @"Login cancelled";
              alertText = @"You need to login to be able to save to your wishlist.";
              [self showMessage:alertText withTitle:alertTitle];
+           } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryAuthenticationReopenSession){
+             // We need to handle session closures that happen outside of the app
+             alertTitle = @"Session Error";
+             alertText = @"Your current session is no longer valid. Please log in again.";
            } else {
              // All other errors that can happen need retries
              // more info: https://github.com/facebook/facebook-ios-sdk/blob/master/src/FBError.h#L163
@@ -197,7 +201,7 @@
                                                                        alertTitle = @"Permission not granted";
                                                                        alertText = @"You need to let Swag Shop access your past actions on Swag Shop in order to see your wishlist.";
                                                                        [self showMessage:alertText withTitle:alertTitle];
-                                                                     } else {
+                                                                     } else{
                                                                        // All other errors that can happen need retries
                                                                        // more info: https://github.com/facebook/facebook-ios-sdk/blob/master/src/FBError.h#L163
                                                                        
@@ -319,21 +323,6 @@
                              delegate:self
                     cancelButtonTitle:@"OK!"
                     otherButtonTitles:nil] show];
-}
-
-// What's this code for???
-- (void)request:(FBRequest *)request didLoad:(id)result {
-  NSArray *allResponses = result;
-  for ( int i=0; i < [allResponses count]; i++ ) {
-    NSDictionary *response = [allResponses objectAtIndex:i];
-    int httpCode = [[response objectForKey:@"code"] intValue];
-    NSString *jsonResponse = [response objectForKey:@"body"];
-    if ( httpCode != 200 ) {
-      NSLog( @"Facebook request error: code: %d  message: %@", httpCode, jsonResponse );
-    } else {
-      NSLog( @"Facebook response: %@", jsonResponse );
-    }
-  }
 }
 
 @end
