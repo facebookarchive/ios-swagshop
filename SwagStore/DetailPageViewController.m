@@ -34,8 +34,6 @@
     
     // Set the UIPageViewController as its own delegate
     [self setDataSource:self];
-    
-    // Needed to debug/fix the UIPageViewControllerTransitionStyleScroll glitch
     [self setDelegate:self];
     
     // Set the currentPage to page
@@ -64,14 +62,6 @@
   // Increase the page
   _currentPage = (_currentPage + 1) % [_items count];
   return [self itemDetailViewControllerForPage:_currentPage];
-}
-
-// Needed to debug/fix the UIPageViewControllerTransitionStyleScroll glitch
-- (void)pageViewController:(UIPageViewController *)pageVC didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
-{
-  if (completed){
-      NSLog(@"transition completed");
-  }
 }
 
 - (ItemDetailViewController *)itemDetailViewControllerForPage:(int)page

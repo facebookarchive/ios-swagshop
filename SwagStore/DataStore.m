@@ -12,7 +12,7 @@
 #import "Item.h"
 #import "AppDelegate.h"
 
-// Contains `all_items`, a singleton array that holds a list of all the items/products in the shop.
+// Contains `allItems`, a singleton array that holds a list of all the items/products in the shop.
 @interface ItemStore()
 {
   NSMutableArray *_allItems;
@@ -37,7 +37,7 @@
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:&err];
     
     NSDictionary *products = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&err];
-    NSLog([NSString stringWithFormat:@"products: %@", products]);
+    NSLog(@"products: %@", products);
     
     // Create items out of the OG objects and add them to the allItems array
     _allItems = [[NSMutableArray alloc] init];

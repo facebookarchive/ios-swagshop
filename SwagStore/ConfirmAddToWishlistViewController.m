@@ -83,8 +83,6 @@
                                        allowLoginUI:YES
                                   completionHandler:
      ^(FBSession *session, FBSessionState state, NSError *error) {
-       __block NSString *alertText;
-       __block NSString *alertTitle;
        if (!error){
          // If the session was opened successfully
          if (state == FBSessionStateOpen){
@@ -95,31 +93,7 @@
          // Then, check for permissions to publish the action
          [self checkPublishPermissionsAndPublish];
        } else {
-         // Handle errors
-         if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
-           // Error requires people using an app to make an action outisde of the app to recover
-           // In these cases, the SDK provides an error message to show the user
-           alertTitle = @"Something went wrong";
-           alertText = [FBErrorUtility userMessageForError:error];
-           [self showMessage:alertText withTitle:alertTitle];
-         } else {
-           // We need to handle the error
-           // If the user canceled
-           if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
-             alertTitle = @"Login cancelled";
-             alertText = @"You need to login to be able to save to your wishlist.";
-             [self showMessage:alertText withTitle:alertTitle];
-           } else {
-             // For all other errors, we just show a genertic error message
-             // You can find more information about error handling here: http://developers.facebook.com/docs/ios/errors
-             //Get more error information from the error
-             NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
-             // Show the user an error message
-             alertTitle = @"Something went wrong";
-             alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
-             [self showMessage:alertText withTitle:alertTitle];
-           }
-         }
+         // Handle errors: https://developers.facebook.com/docs/ios/errors
        }
      }];
   }
@@ -151,56 +125,17 @@
                                                                         [self publishStory];
                                                                       }
                                                                     } else {
-                                                                      // An error occurred
-                                                                      if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
-                                                                        // Error requires people using an app to make an action outisde of the app to recover
-                                                                        // In these cases, the SDK provides an error message to show the user
-                                                                        alertTitle = @"Something went wrong";
-                                                                        alertText = [FBErrorUtility userMessageForError:error];
-                                                                        [self showMessage:alertText withTitle:alertTitle];
-                                                                      } else {
-                                                                        // We need to handle the error
-                                                                        if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
-                                                                          alertTitle = @"Permission not granted";
-                                                                          alertText = @"The item will not be saved to your wishlist.";
-                                                                          [self showMessage:alertText withTitle:alertTitle];
-                                                                        } else {
-                                                                          // For all other errors, we just show a genertic error message
-                                                                          // You can find more information about error handling here: http://developers.facebook.com/docs/ios/errors
-                                                                          //Get more error information from the error
-                                                                          NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
-                                                                          // Show the user an error message
-                                                                          alertTitle = @"Something went wrong";
-                                                                          alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
-                                                                          [self showMessage:alertText withTitle:alertTitle];
-                                                                        }
-                                                                        
-                                                                      }
+                                                                      // Handle errors: https://developers.facebook.com/docs/ios/errors
                                                                     }
                                                                   }];
                             } else {
                               // Permissions present, publish the OG story
                               [self publishStory];
                             }
+                          } else {
+                            // Handle errors: https://developers.facebook.com/docs/ios/errors
                           }
                         }];
-}
-
-- (void)showMessage:(NSString *)text withTitle:(NSString *)title
-{
-  [[[UIAlertView alloc] initWithTitle:title
-                              message:text
-                             delegate:self
-                    cancelButtonTitle:@"OK!"
-                    otherButtonTitles:nil] show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-  if(buttonIndex==0)
-  {
-    [self goBackToItemDetail];
-  }
 }
 
 - (void)publishStory
@@ -230,38 +165,28 @@
                                    [FBAppEvents logEvent:FBAppEventNameAddedToWishlist
                                               parameters:@{FBAppEventParameterNameContentID:[_item itemSKU]}];
                                  } else {
-                                   // An error occurred
-                                   if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
-                                     // Error requires people using an app to make an out-of-band action to recover
-                                     alertTitle = @"Something went wrong";
-                                     alertText = [FBErrorUtility userMessageForError:error];
-                                     [self showMessage:alertText withTitle:alertTitle];
-                                   } else {
-                                     // We need to handle the error
-                                     //Get more error information from the error
-                                     int errorCode = error.code;
-                                     NSDictionary *errorInformation = [[[[error userInfo] objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
-                                     int errorSubcode = 0;
-                                     if ([errorInformation objectForKey:@"code"]){
-                                       errorSubcode = [[errorInformation objectForKey:@"code"] integerValue];
-                                     }
-                                     /* We allow the user to add a particular item to their wishlist only once,
-                                      trying to add an item twice will throw an error */
-                                     if (errorCode == 5 && errorSubcode == 3501) {
-                                       // Show the user an error message
-                                       alertTitle = @"";
-                                       alertText = @"This item is already in your wishlist. You cannot add an item more than once.";
-                                       [self showMessage:alertText withTitle:alertTitle];
-
-                                     } else {
-                                       // Diplay message for generic error
-                                       alertTitle = @"Something went wrong";
-                                       alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
-                                       [self showMessage:alertText withTitle:alertTitle];
-                                     }
-                                   }
+                                   // Handle errors: https://developers.facebook.com/docs/ios/errors
                                  }
                                }];
+}
+
+- (void)showMessage:(NSString *)text withTitle:(NSString *)title
+{
+  [[[UIAlertView alloc] initWithTitle:title
+                              message:text
+                             delegate:self
+                    cancelButtonTitle:@"OK!"
+                    otherButtonTitles:nil] show];
+}
+
+// When the user OKs the alert message, that is shown (either on error or after publishing successfully),
+// take the user back to the product detail page of the product they were adding to the wishlist
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+  if(buttonIndex==0)
+  {
+    [self goBackToItemDetail];
+  }
 }
 
 - (void)goBackToItemDetail
