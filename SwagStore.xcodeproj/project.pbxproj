@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8FF3C19F17B98539001D63C3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF3C19E17B98539001D63C3 /* FacebookSDK.framework */; };
-		8FF3C1A017B98539001D63C3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF3C19E17B98539001D63C3 /* FacebookSDK.framework */; };
 		ED0A01C917B98AD7002B1776 /* WishlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0A01C817B98AD7002B1776 /* WishlistViewController.m */; };
 		ED3CCF4A17B2F73700022703 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3CCF4917B2F73700022703 /* ItemCell.m */; };
 		ED5A384917B05DFB00F87E77 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5A384817B05DFB00F87E77 /* Foundation.framework */; };
@@ -44,6 +42,7 @@
 		EDCF5F2017B32D3B00215A0E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F1F17B32D3A00215A0E /* StoreKit.framework */; };
 		EDCF5F2217B32D4500215A0E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F2117B32D4500215A0E /* SystemConfiguration.framework */; };
 		EDCF5F2517B5750500215A0E /* DetailPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCF5F2417B5750500215A0E /* DetailPageViewController.m */; };
+		EDDA9AFB186D1405009F4EAE /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDA9AFA186D1405009F4EAE /* FacebookSDK.framework */; };
 		EDF31268184FDFCC00AFFE5E /* SwagStore-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDF31267184FDFCC00AFFE5E /* SwagStore-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +57,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8FF3C19E17B98539001D63C3 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		ED0A01C717B98AD7002B1776 /* WishlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WishlistViewController.h; sourceTree = "<group>"; };
 		ED0A01C817B98AD7002B1776 /* WishlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WishlistViewController.m; sourceTree = "<group>"; };
 		ED3CCF4817B2F73700022703 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
@@ -108,6 +106,7 @@
 		EDCF5F2117B32D4500215A0E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EDCF5F2317B5750500215A0E /* DetailPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPageViewController.h; sourceTree = "<group>"; };
 		EDCF5F2417B5750500215A0E /* DetailPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPageViewController.m; sourceTree = "<group>"; };
+		EDDA9AFA186D1405009F4EAE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		EDF31267184FDFCC00AFFE5E /* SwagStore-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SwagStore-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,9 +123,9 @@
 				EDCF5F1817B32D1B00215A0E /* libz.1.1.3.dylib in Frameworks */,
 				EDCF5F1617B32D1100215A0E /* CoreLocation.framework in Frameworks */,
 				EDCF5F1417B32D0500215A0E /* CFNetwork.framework in Frameworks */,
+				EDDA9AFB186D1405009F4EAE /* FacebookSDK.framework in Frameworks */,
 				EDCF5F1217B32CFD00215A0E /* AudioToolbox.framework in Frameworks */,
 				ED5A384B17B05DFB00F87E77 /* CoreGraphics.framework in Frameworks */,
-				8FF3C19F17B98539001D63C3 /* FacebookSDK.framework in Frameworks */,
 				ED5A384D17B05DFB00F87E77 /* UIKit.framework in Frameworks */,
 				ED5A384917B05DFB00F87E77 /* Foundation.framework in Frameworks */,
 			);
@@ -137,7 +136,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED5A386217B05DFB00F87E77 /* XCTest.framework in Frameworks */,
-				8FF3C1A017B98539001D63C3 /* FacebookSDK.framework in Frameworks */,
 				ED5A386417B05DFB00F87E77 /* UIKit.framework in Frameworks */,
 				ED5A386317B05DFB00F87E77 /* Foundation.framework in Frameworks */,
 			);
@@ -168,6 +166,7 @@
 		ED5A384717B05DFB00F87E77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EDDA9AFA186D1405009F4EAE /* FacebookSDK.framework */,
 				EDCF5F2117B32D4500215A0E /* SystemConfiguration.framework */,
 				EDCF5F1F17B32D3A00215A0E /* StoreKit.framework */,
 				EDCF5F1D17B32D3100215A0E /* Security.framework */,
@@ -177,7 +176,6 @@
 				EDCF5F1517B32D1100215A0E /* CoreLocation.framework */,
 				EDCF5F1317B32D0500215A0E /* CFNetwork.framework */,
 				EDCF5F1117B32CFD00215A0E /* AudioToolbox.framework */,
-				8FF3C19E17B98539001D63C3 /* FacebookSDK.framework */,
 				ED5A384817B05DFB00F87E77 /* Foundation.framework */,
 				ED5A384A17B05DFB00F87E77 /* CoreGraphics.framework */,
 				ED5A384C17B05DFB00F87E77 /* UIKit.framework */,
