@@ -66,14 +66,6 @@
   return [self itemDetailViewControllerForPage:_currentPage];
 }
 
-// Needed to debug/fix the UIPageViewControllerTransitionStyleScroll glitch
-- (void)pageViewController:(UIPageViewController *)pageVC didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
-{
-  if (completed){
-      NSLog(@"transition completed");
-  }
-}
-
 - (ItemDetailViewController *)itemDetailViewControllerForPage:(int)page
 {
   // Create the UIViewController that will contain the item detail

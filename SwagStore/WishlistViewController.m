@@ -31,7 +31,7 @@
 {
   _wishlistItemsArray = wishlistItemsArray;
   _wishlistActionsArray = wishlistActionsArray;
-  NSLog([NSString stringWithFormat:@"wishlistActionsArray %@", wishlistActionsArray]);
+  NSLog(@"wishlistActionsArray %@", wishlistActionsArray);
   self = [self init];
   if (self) {
     // Set the viewTitle
@@ -120,9 +120,8 @@
   // Obtain the FBID of the OG object associated with the item
   Item *item = [_wishlistItemsArray objectAtIndex:[indexPath row]];
   NSString *productId = [item itemFBID];
-  NSLog([NSString stringWithFormat:@"product id %@", productId]);
+  NSLog(@"product id %@", productId);
   // Find the FBID of the OG action connected with that OG Object
-  __block BOOL actionDeleted = NO;
   for (id action in _wishlistActionsArray) {
     if ([[NSString stringWithFormat:@"%@", [[[action objectForKey:@"data"] objectForKey:@"product"] objectForKey:@"id"]] isEqualToString:productId]) {
       NSLog(@"found an item to delete");
@@ -131,20 +130,8 @@
                      completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         NSLog(@"finished request");
         if (error) {
-          NSString *alertText;
-          NSString *alertTitle;
-          if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
-            // Error requires people using an app to make an out-of-band action to recover
-            alertTitle = @"Something went wrong";
-            alertText = [FBErrorUtility userMessageForError:error];
-            [self showMessage:alertText withTitle:alertTitle];
-          } else {
-            NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];            
-            // Show the user an error message
-            alertTitle = @"Something went wrong #1";
-            alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
-            [self showMessage:alertText withTitle:alertTitle];
-          }
+          // An error occurred, we don't handle the error here but you should
+          // more info: http://developers.facebook.com/docs/ios/errors
         } else {
           // Remove the action from the wishlistActionsArray
           [_wishlistActionsArray removeObject:action];
@@ -157,15 +144,6 @@
       break;
     }
   }
-}
-       
- - (void)showMessage:(NSString *)text withTitle:(NSString *)title
-{
-  [[[UIAlertView alloc] initWithTitle:title
-                              message:text
-                             delegate:self
-                    cancelButtonTitle:@"OK!"
-                    otherButtonTitles:nil] show];
 }
     
 @end

@@ -144,8 +144,6 @@
 {
   [FBRequestConnection startWithGraphPath:@"/me/permissions"
                         completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-                          __block NSString *alertText;
-                          __block NSString *alertTitle;
                           if (!error){
                             NSDictionary *permissions= [(NSArray *)[result data] objectAtIndex:0];
                             if (![permissions objectForKey:@"user_actions:fbswagshop"]){

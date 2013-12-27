@@ -37,7 +37,7 @@
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:&err];
     
     NSDictionary *products = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&err];
-    NSLog([NSString stringWithFormat:@"products: %@", products]);
+    NSLog(@"products: %@", products);
     
     // Create items out of the OG objects and add them to the allItems array
     _allItems = [[NSMutableArray alloc] init];
