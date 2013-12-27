@@ -8,12 +8,17 @@
 
 #import "AppDelegate.h"
 #import "ItemListViewController.h"
+#import "DetailPageViewController.h"
+#import "DataStore.h"
+#import "Item.h"
 
 @interface AppDelegate ()
 
 @property ItemListViewController *itemListViewController;
 
 @end
+
+/* If there is a valid session token when the app is launched, the app delegate logs the user in with Facebook using that token. Also, the app delegate handles incoming links passed when the Facebook for iOS app makes a cross app call to Swag Shop. */
 
 @implementation AppDelegate
 
@@ -31,8 +36,21 @@
     // Whenever a person opens the app, check for a cached session
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
       // If there's one, just open the session silently
-      NSLog(@"FBSessionStateCreatedTokenLoaded");
-      [self openFacebookSession];
+      [FBSession openActiveSessionWithReadPermissions:@[@"basic_info"]
+                                         allowLoginUI:NO
+                                    completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                      if (!error && state == FBSessionStateOpen){
+                                        NSLog(@"session opened");
+                                        //Call a function that makes changes depending on session state
+                                        [self userLoggedIn];
+                                      } else if (error){
+                                        NSLog(@"session opening error");
+                                        // If failed, clear this token
+                                        [FBSession.activeSession closeAndClearTokenInformation];
+                                        //Call a function that makes changes depending on session state
+                                        [self userLoggedOut];
+                                      }
+                                    }];
     }
   
     // Create the ItemListViewController
@@ -67,33 +85,40 @@
   [_itemListViewController setAccountSettingsButtonWithTitle:@"Account"];
 }
 
-// Open a session only if it can be done without the loginUI (if there's an active token)
-- (void)openFacebookSession
-{
-  NSLog(@"opening session");
-  
-  [FBSession openActiveSessionWithReadPermissions:@[@"basic_info"]
-                                     allowLoginUI:NO
-                                completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-                                  if (!error && state == FBSessionStateOpen){
-                                      NSLog(@"session opened");
-                                      [self userLoggedIn];
-                                  } else if (error){
-                                    // If failed, clear this token
-                                    NSLog(@"session opening error");
-                                    [FBSession.activeSession closeAndClearTokenInformation];
-                                    [self userLoggedOut];
-                                  }
-                                }];
-}
-
-// Call the Facebook session object that handles the incoming URL, after control is returned to Swag Shop by the Facebook app
+// Add deep linking handling here
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-  BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+  // Call the FBAppCall method that handles the incoming URL
+  BOOL wasHandled = [FBAppCall handleOpenURL:url
+                           sourceApplication:sourceApplication
+                             fallbackHandler:^(FBAppCall *call) {
+                               // Handle deep links to direct user who click on posts about a product on Facebook to that product's page on the app
+                               
+                               // We first retrieve the link associated with the post
+                               // The link will be in the target_url parameter
+                               NSString *targetURL = [[[call appLinkData] targetURL] absoluteString];
+                               
+                               // Get an array with all the products
+                               NSArray *items = [[ItemStore sharedStore] allItems];
+                               
+                               //Check in which position in the array there's a product whose url is the targetURL we received
+                               for (int i = 0; i < [items count]; i++) {
+                                 if ([[items objectAtIndex:i] itemURL] == targetURL){
+                                   // Create a detailPageViewController and point it to the page containing the item
+                                   DetailPageViewController *detailPageViewController = [[DetailPageViewController alloc]
+                                                                                         initWithPage:i];
+                                   
+                                   // Push the detailPageViewController to the navigationController
+                                   [[self navigationController] pushViewController:detailPageViewController animated:YES];
+                                   break;
+                                 }
+                               }
+                               
+                               
+                             }];
   
   return wasHandled;
 }
@@ -102,8 +127,9 @@
 {
   // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
   
-  // We need to properly handle activation of the application with regards to Facebook Login
-  // (e.g., returning from iOS 6.0 Login Dialog or from fast app switching).
+  /* Handle re-activation of the application if the user left the application while the Login Dialog was being shown
+     For example, the user tapped the Login button, but then pressed the iOS "home" button while the Facebook for iOS app
+     was in the foreground showing the login dialog (during the fast-app switch) */
   [FBAppCall handleDidBecomeActive];
 }
 

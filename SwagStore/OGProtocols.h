@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <FacebookSDK/FacebookSDK.h>
 
+// Protocols for the object and action that will be featured in the Open Graph story that the Swag Shop app will post to Facebook
+
 @protocol OGProductObject<FBGraphObject>
 
 @property (retain, nonatomic) NSString *id;

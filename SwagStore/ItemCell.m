@@ -8,6 +8,8 @@
 
 #import "ItemCell.h"
 
+/* Each of the cells in the ListViewController and WishlistViewController. They display the products and some of their properties: name, description, image. */
+
 @implementation ItemCell
 
 - (instancetype)populateFromItem:(Item *)item

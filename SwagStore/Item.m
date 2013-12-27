@@ -8,13 +8,13 @@
 
 #import "Item.h"
 
+// A class to represent an item/product that is available in the shop.
 @implementation Item
 
 - (instancetype)initWithNSDictionary:(NSDictionary *)object
 {
     // Call the superclass's designated initializer
     self = [super init];
-    // Did the superclass's designated initializer succeed?
     if (self) {
       // Give the instance variables initial values
       [self setItemFBID:nil];
@@ -38,7 +38,6 @@
 {
   // Call the superclass's designated initializer
   self = [super init];
-  // Did the superclass's designated initializer succeed?
   if (self) {
     // Give the instance variables initial values
     [self setItemFBID:[object objectForKey:@"id"]];

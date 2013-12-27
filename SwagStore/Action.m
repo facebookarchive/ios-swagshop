@@ -8,6 +8,7 @@
 
 #import "Action.h"
 
+//  A class to represent an actions the user does ("adding an item to wishlist").
 @implementation Action
 
 @end

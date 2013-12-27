@@ -23,6 +23,8 @@
 
 @end
 
+/* This view displays the all the products the user has added to their wishlist. On the nav bar there's an "Edit" button that turns the list to the iOS list edit mode and allows the user to remove items from the list. When an item is removed, a Graph API call is made to delete the action (addition to the user's wishlist) tied with that object from the Facebook graph. */
+
 @implementation WishlistViewController
 
 - (instancetype)initWithWishlistItemsArray:(NSMutableArray *)wishlistItemsArray WishlistActionsArray:(NSMutableArray *)wishlistActionsArray
@@ -102,7 +104,6 @@
   
   // Get the wish list item for the row
   Item *wishlistItem = [_wishlistItemsArray objectAtIndex:[indexPath row]];
-  NSLog([NSString stringWithFormat:@"wishlistItemArray when creating cells: %@", _wishlistItemsArray]);
   
   // Return the cell populated with the wishlist items
   return [cell populateFromItem:wishlistItem];
@@ -115,7 +116,7 @@
 {
   
   NSLog(@"removeWishlistItem");
-  // TO DO: remove the item from the wishlist, to do this we need to remove the OG action connected with that OG object on Facebook
+  // Remove the item from the wishlist, to do this we need to remove the OG action connected with that OG object on Facebook
   // Obtain the FBID of the OG object associated with the item
   Item *item = [_wishlistItemsArray objectAtIndex:[indexPath row]];
   NSString *productId = [item itemFBID];
@@ -134,7 +135,7 @@
           NSString *alertTitle;
           if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
             // Error requires people using an app to make an out-of-band action to recover
-            alertTitle = @"Something went wrong :S";
+            alertTitle = @"Something went wrong";
             alertText = [FBErrorUtility userMessageForError:error];
             [self showMessage:alertText withTitle:alertTitle];
           } else {
