@@ -12,7 +12,7 @@
 #import "Item.h"
 #import "AppDelegate.h"
 
-// Contains `all_items`, a singleton array that holds a list of all the items/products in the shop.
+// Contains `allItems`, a singleton array that holds a list of all the items/products in the shop.
 @interface ItemStore()
 {
   NSMutableArray *_allItems;

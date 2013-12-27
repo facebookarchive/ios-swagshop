@@ -148,7 +148,6 @@
                             NSDictionary *permissions= [(NSArray *)[result data] objectAtIndex:0];
                             if (![permissions objectForKey:@"user_actions:fbswagshop"]){
                               // Permission hasn't been granted, so ask for publish_actions
-                              NSLog([NSString stringWithFormat:@"permissions %@", permissions]);
                               [FBSession.activeSession requestNewReadPermissions:[NSArray arrayWithObject:@"user_actions:fbswagshop"]
                                                                completionHandler:^(FBSession *session, NSError *error) {
                                                                  if (!error) {

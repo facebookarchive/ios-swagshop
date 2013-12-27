@@ -34,8 +34,6 @@
     
     // Set the UIPageViewController as its own delegate
     [self setDataSource:self];
-    
-    // Needed to debug/fix the UIPageViewControllerTransitionStyleScroll glitch
     [self setDelegate:self];
     
     // Set the currentPage to page

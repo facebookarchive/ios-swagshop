@@ -138,23 +138,6 @@
                         }];
 }
 
-- (void)showMessage:(NSString *)text withTitle:(NSString *)title
-{
-  [[[UIAlertView alloc] initWithTitle:title
-                              message:text
-                             delegate:self
-                    cancelButtonTitle:@"OK!"
-                    otherButtonTitles:nil] show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-  if(buttonIndex==0)
-  {
-    [self goBackToItemDetail];
-  }
-}
-
 - (void)publishStory
 {
   // Create an OG wishlist action with the product object
@@ -185,6 +168,25 @@
                                    // Handle errors: https://developers.facebook.com/docs/ios/errors
                                  }
                                }];
+}
+
+- (void)showMessage:(NSString *)text withTitle:(NSString *)title
+{
+  [[[UIAlertView alloc] initWithTitle:title
+                              message:text
+                             delegate:self
+                    cancelButtonTitle:@"OK!"
+                    otherButtonTitles:nil] show];
+}
+
+// When the user OKs the alert message, that is shown (either on error or after publishing successfully),
+// take the user back to the product detail page of the product they were adding to the wishlist
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+  if(buttonIndex==0)
+  {
+    [self goBackToItemDetail];
+  }
 }
 
 - (void)goBackToItemDetail

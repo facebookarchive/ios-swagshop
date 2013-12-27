@@ -85,7 +85,7 @@
   [_itemListViewController setAccountSettingsButtonWithTitle:@"Account"];
 }
 
-// Add deep linking handling here
+// Add deep link handling here
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -95,7 +95,7 @@
   BOOL wasHandled = [FBAppCall handleOpenURL:url
                            sourceApplication:sourceApplication
                              fallbackHandler:^(FBAppCall *call) {
-                               // Handle deep links to direct user who click on posts about a product on Facebook to that product's page on the app
+                               // Handle deep links to direct users who click on posts about a product on Facebook to that product's page on the app
                                
                                // We first retrieve the link associated with the post
                                // The link will be in the target_url parameter
