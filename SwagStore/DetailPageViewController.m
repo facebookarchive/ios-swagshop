@@ -17,16 +17,13 @@
 
 @end
 
+// A page view controller that holds a detailed view from one item/product at a time. Swiping navigates to other items.
+
 @implementation DetailPageViewController
 
 - (instancetype)initWithPage:(int)page
 {
   // Initialize the UIPageViewController
-  /* TO DO
-   UIPageViewControllerTransitionStyleScroll is glitchy, we're waiting out to see if the some iOS release fixes it
-   if not, we can fix it before release, the hack is here: http://stackoverflow.com/questions/12939280/uipageviewcontroller-navigates-to-wrong-page-with-scroll-transition-style
-   Also: debug code in this class needs cleanup
-   */
   self = [self initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
                  navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                                options:nil];

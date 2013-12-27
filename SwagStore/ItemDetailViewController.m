@@ -22,6 +22,8 @@
 
 @end
 
+/* The detailed view of an item/product in the store. When an item/products is viewed, an App Event is used to log this user action. This view also has an "Add to wishlist" button which takes the user to the `ConfirmAddToWishListViewController`.  */
+
 @implementation ItemDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,6 +48,8 @@
   
   _productObject = [self productObjectForItem:[self item]];
   
+  // This line logs an App Event when the user has viewed a product
+  // more info: http://developers.facebook.com/docs/ios/app-events
   [FBAppEvents logEvent:FBAppEventNameViewedContent
     parameters:@{FBAppEventParameterNameContentID:[item itemSKU]}];
   
@@ -57,7 +61,7 @@
   [[self navigationItem] setTitle:[[self item] itemName]];
 }
 
-// Create a product UG object from an item
+// Create a product OG object from an item
 - (id<OGProductObject>)productObjectForItem:(Item*)item
 {
   // We create an FBGraphObject object, but we can treat it as an OGProductObject with typed properties, etc.

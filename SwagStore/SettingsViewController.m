@@ -26,6 +26,8 @@
 
 @end
 
+/* If the user is logged out, this view displays a button to log in with Facebook. If the user is logged in, this view displays a button to log out and a button to "Go to wishlist" that takes the user to the `WishlistViewController`. To display the user's wishlist, a Graph API call is made to retrieve all the past actions made by the user on the Swag Shop app (the user's past additions of products to their wishlist). To do this, if the user hasn't granted permission to Swag Shop to read their past actions on the app, they will be prompted to do so. */
+
 @implementation SettingsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -80,7 +82,7 @@
   if ([FBErrorUtility shouldNotifyUserForError:error]) {
     // If the SDK has a message for the user, surface it. This conveniently
     // handles cases like password change or iOS6 app slider state.
-    alertTitle = @"Facebook Error";
+    alertTitle = @"Error";
     alertMessage = [FBErrorUtility userMessageForError:error];
   } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryAuthenticationReopenSession) {
     // It is important to handle session closures since they can happen
@@ -111,11 +113,6 @@
 
 - (IBAction)goToWishlist:(id)sender
 {
-  [self allWishlistItems];
-}
-
-- (void)allWishlistItems
-{
   _wishlistItemsArray = [[NSMutableArray alloc] initWithArray:@[]];
   if (FBSession.activeSession.isOpen) {
     // If there's a session open, check the permissions and then read the user's OG action history
@@ -126,46 +123,18 @@
                                        allowLoginUI:YES
                                   completionHandler:
      ^(FBSession *session, FBSessionState state, NSError *error) {
-       __block NSString *alertText;
-       __block NSString *alertTitle;
-       // If the session was opened successfully...
+       // If the session was opened successfully
        if (!error && (state == FBSessionStateOpen || state == FBSessionStateOpenTokenExtended)){
          // Go through the general session handling process
          AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
          [appDelegate userLoggedIn];
          
-         // We can read the actions because we've just opened the session with the right permissions
+         // Now we can read the actions because we've just opened the session with the right permissions
          [self readActions];
        } else {
-         // Handle errors
-         if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
-           // Error requires people using an app to make an out-of-band action to recover
-           alertTitle = @"Something went wrong :S";
-           alertText = [FBErrorUtility userMessageForError:error];
-           [self showMessage:alertText withTitle:alertTitle];
-         } else {
-           // We need to handle the error
-           if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
-             alertTitle = @"Login cancelled";
-             alertText = @"You need to login to be able to save to your wishlist.";
-             [self showMessage:alertText withTitle:alertTitle];
-           } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryAuthenticationReopenSession){
-             // We need to handle session closures that happen outside of the app
-             alertTitle = @"Session Error";
-             alertText = @"Your current session is no longer valid. Please log in again.";
-           } else {
-             // All other errors that can happen need retries
-             // more info: https://github.com/facebook/facebook-ios-sdk/blob/master/src/FBError.h#L163
-             
-             //Get more error information from the error and
-             NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
-             
-             // Show the user an error message
-             alertTitle = @"Something went wrong :S";
-             alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
-             [self showMessage:alertText withTitle:alertTitle];
-           }
-         }
+         // An error occurred, we don't handle the error here but you should
+         // more info: http://developers.facebook.com/docs/ios/errors
+         NSLog(@"Error requesting the fbswagshop:wishlist actions: %@", error);
        }
      }];
   }
@@ -185,36 +154,12 @@
                               [FBSession.activeSession requestNewReadPermissions:[NSArray arrayWithObject:@"user_actions:fbswagshop"]
                                                                completionHandler:^(FBSession *session, NSError *error) {
                                                                  if (!error) {
-                                                                   // Permission granted
-                                                                   NSLog([NSString stringWithFormat:@"new permissions %@", [FBSession.activeSession permissions]]);
+                                                                   // Permission granted, read the user's OG action history
                                                                    [self readActions];
                                                                  } else {
-                                                                   // An error occurred
-                                                                   if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
-                                                                     // Error requires people using an app to make an out-of-band action to recover
-                                                                     alertTitle = @"Something went wrong :S";
-                                                                     alertText = [FBErrorUtility userMessageForError:error];
-                                                                     [self showMessage:alertText withTitle:alertTitle];
-                                                                   } else {
-                                                                     // We need to handle the error
-                                                                     if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
-                                                                       alertTitle = @"Permission not granted";
-                                                                       alertText = @"You need to let Swag Shop access your past actions on Swag Shop in order to see your wishlist.";
-                                                                       [self showMessage:alertText withTitle:alertTitle];
-                                                                     } else{
-                                                                       // All other errors that can happen need retries
-                                                                       // more info: https://github.com/facebook/facebook-ios-sdk/blob/master/src/FBError.h#L163
-                                                                       
-                                                                       //Get more error information from the error and
-                                                                       NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
-                                                                       
-                                                                       // Show the user an error message
-                                                                       alertTitle = @"Something went wrong :S";
-                                                                       alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
-                                                                       [self showMessage:alertText withTitle:alertTitle];
-                                                                     }
-                                                                     
-                                                                   }
+                                                                   // An error occurred, we don't handle the error here but you should
+                                                                   // more info: http://developers.facebook.com/docs/ios/errors
+                                                                   NSLog(@"Error requesting permissions: %@", error);
                                                                  }
                                                                }];
                             } else {
@@ -222,6 +167,10 @@
                               [self readActions];
                             }
                             
+                          } else {
+                            // An error occurred, we don't handle the error here but you should
+                            // more info: http://developers.facebook.com/docs/ios/errors
+                            NSLog(@"Error retrieving permissions: %@", error);
                           }
                         }];
 }
@@ -229,8 +178,6 @@
 - (void)readActions
 {
   // Retrieve all the OG actions ("add to wishlist" actions the user performed within this app)
-  NSLog(@"making request #1");
-  
   FBRequestConnection *connection = [[FBRequestConnection alloc] init];
   
   // First request gets the wishlist actions
@@ -240,78 +187,63 @@
        completionHandler:
    ^(FBRequestConnection *connection, id result, NSError *error) {
      if (error) {
-       NSString *alertText;
-       NSString *alertTitle;
-       if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
-         // Error requires people using an app to make an out-of-band action to recover
-         alertTitle = @"Something went wrong :S";
-         alertText = [FBErrorUtility userMessageForError:error];
-         [self showMessage:alertText withTitle:alertTitle];
-       } else {
-         NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
-         
-         // Show the user an error message
-         alertTitle = @"Something went wrong #1";
-         alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
-         [self showMessage:alertText withTitle:alertTitle];
-       }
+       // An error occurred, we don't handle the error here but you should
+       // more info: http://developers.facebook.com/docs/ios/errors
+       NSLog(@"Error requesting the fbswagshop:wishlist actions: %@", error);
      } else {
+       // We retrieved the actions
        _pastOGActions = [[NSMutableArray alloc] initWithArray:@[]];
        _pastOGObjects = [[NSMutableArray alloc] initWithArray:@[]];
+       // Add all the actions retrieved to the _pastOGActions array.
+       // Each action will carry the object's id, add all these ids to the _pastOGObjects,
+       // (we will later use these ids to retrieve the objects' properties and display these properties in the wishlist)
        for (id action in [result objectForKey:@"data"]){
          [_pastOGActions addObject:action];
          [_pastOGObjects addObject:[[[action objectForKey:@"data"] objectForKey:@"product"] objectForKey:@"id"]];
        }
-       
+       // If there were any actions:
        if ([_pastOGActions count] > 0){
-         // Second request gets the product details
-         
-         NSLog(@"making request #2");
+         // A second request gets the product details
          FBRequestConnection *connection = [[FBRequestConnection alloc] init];
-         
          NSString *idString = [NSString stringWithFormat:@"?ids=%@", [_pastOGObjects componentsJoinedByString:@","]];
          FBRequest *request2 = [FBRequest requestForGraphPath:idString];
          [connection addRequest:request2
               completionHandler:
           ^(FBRequestConnection *connection, id result, NSError *error) {
             if (error){
-              NSString *alertText;
-              NSString *alertTitle;
-              if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
-                // Error requires people using an app to make an out-of-band action to recover
-                alertTitle = @"Something went wrong";
-                alertText = [FBErrorUtility userMessageForError:error];
-                [self showMessage:alertText withTitle:alertTitle];
-              } else {
-                NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
-                
-                // Show the user an error message
-                alertTitle = @"Something went wrong";
-                alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
-                [self showMessage:alertText withTitle:alertTitle];;
-              }
+              // An error occurred, we don't handle the error here but you should
+              // more info: http://developers.facebook.com/docs/ios/errors
+              NSLog(@"Error requesting the products: %@", error);
             } else {
-              NSLog(@"it went ok");
+              // We retrieved the objects
+              // For each object retrieved we reformat it by creating an "item" object, and put it in an array
+              // (we need it in this "item" format to be able to display it later using our ItemCells)
               for (id key in result){
                 id object = [result objectForKey:key];
                 Item *item = [[Item alloc] initWithFBObject:object];
                 [_wishlistItemsArray addObject:item];
               }
-              NSLog([NSString stringWithFormat:@"wishlistItemArray when done with the call %@", _wishlistItemsArray]);
+              NSLog(@"wishlistItemArray: %@", _wishlistItemsArray);
+              // We create a WishlistViewController
+              // and we pass it the past OG objects (_wishlistItemsArray) and actions (_pastOGActions)
               _wishlistViewController = [[WishlistViewController alloc] initWithWishlistItemsArray:_wishlistItemsArray WishlistActionsArray:_pastOGActions];
               [[self navigationController] pushViewController:_wishlistViewController animated:YES];
             }
           }
           ];
+         // We start the connection for the products request
          [connection start];
        } else {
+         // If there weren't any actions, we show an empty list
+         // We create a WishlistViewController
+         // and we pass it the past it two empty arrays for OG objects and actions
          _wishlistViewController = [[WishlistViewController alloc] initWithWishlistItemsArray:@[] WishlistActionsArray:@[]];
          [[self navigationController] pushViewController:_wishlistViewController animated:YES];
        }
      }
    }
    ];
-  
+  // We start the connection for the actions request
   [connection start];
   
 }

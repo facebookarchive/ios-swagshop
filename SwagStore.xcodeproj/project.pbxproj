@@ -44,6 +44,7 @@
 		EDCF5F2017B32D3B00215A0E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F1F17B32D3A00215A0E /* StoreKit.framework */; };
 		EDCF5F2217B32D4500215A0E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF5F2117B32D4500215A0E /* SystemConfiguration.framework */; };
 		EDCF5F2517B5750500215A0E /* DetailPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCF5F2417B5750500215A0E /* DetailPageViewController.m */; };
+		EDF31268184FDFCC00AFFE5E /* SwagStore-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDF31267184FDFCC00AFFE5E /* SwagStore-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +67,6 @@
 		ED5A384817B05DFB00F87E77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ED5A384A17B05DFB00F87E77 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		ED5A384C17B05DFB00F87E77 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		ED5A385017B05DFB00F87E77 /* SwagStore-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SwagStore-Info.plist"; sourceTree = "<group>"; };
 		ED5A385217B05DFB00F87E77 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ED5A385417B05DFB00F87E77 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ED5A385617B05DFB00F87E77 /* SwagStore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwagStore-Prefix.pch"; sourceTree = "<group>"; };
@@ -108,6 +108,7 @@
 		EDCF5F2117B32D4500215A0E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EDCF5F2317B5750500215A0E /* DetailPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPageViewController.h; sourceTree = "<group>"; };
 		EDCF5F2417B5750500215A0E /* DetailPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPageViewController.m; sourceTree = "<group>"; };
+		EDF31267184FDFCC00AFFE5E /* SwagStore-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SwagStore-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,7 +225,7 @@
 		ED5A384F17B05DFB00F87E77 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				ED5A385017B05DFB00F87E77 /* SwagStore-Info.plist */,
+				EDF31267184FDFCC00AFFE5E /* SwagStore-Info.plist */,
 				ED5A385117B05DFB00F87E77 /* InfoPlist.strings */,
 				ED5A385417B05DFB00F87E77 /* main.m */,
 				ED5A385617B05DFB00F87E77 /* SwagStore-Prefix.pch */,
@@ -333,6 +334,7 @@
 				ED5A385B17B05DFB00F87E77 /* Images.xcassets in Resources */,
 				ED9A01CD17B84D81001B9B68 /* ItemCell.xib in Resources */,
 				ED5A388F17B180BF00F87E77 /* SettingsViewController.xib in Resources */,
+				EDF31268184FDFCC00AFFE5E /* SwagStore-Info.plist in Resources */,
 				ED9A01D217B84DCE001B9B68 /* ItemDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,7 +481,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Maria Luz Caballero (3T38TD8Z2F)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../Documents/FacebookSDK",
@@ -489,8 +491,8 @@
 				GCC_PREFIX_HEADER = "SwagStore/SwagStore-Prefix.pch";
 				INFOPLIST_FILE = "SwagStore/SwagStore-Info.plist";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = SwagStore;
+				PROVISIONING_PROFILE = "1882206E-3850-443C-B74F-CE3D9A024973";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -501,7 +503,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Maria Luz Caballero (3T38TD8Z2F)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../Documents/FacebookSDK",
@@ -511,8 +513,8 @@
 				GCC_PREFIX_HEADER = "SwagStore/SwagStore-Prefix.pch";
 				INFOPLIST_FILE = "SwagStore/SwagStore-Info.plist";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = SwagStore;
+				PROVISIONING_PROFILE = "1882206E-3850-443C-B74F-CE3D9A024973";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -534,7 +536,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "SwagStoreTests/SwagStoreTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SwagStoreTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -553,7 +555,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SwagStore/SwagStore-Prefix.pch";
 				INFOPLIST_FILE = "SwagStoreTests/SwagStoreTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SwagStoreTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};

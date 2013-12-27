@@ -14,11 +14,6 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController* navigationController;
 
-- (void)openFacebookSession;
-- (void)showFacebookLoginView;
-- (void)facebookSessionStateChanged:(FBSession *)session
-                              state:(FBSessionState) state
-                              error:(NSError *)error;
 - (void)userLoggedOut;
 - (void)userLoggedIn;
 @end

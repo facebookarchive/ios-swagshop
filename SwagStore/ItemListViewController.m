@@ -16,6 +16,8 @@
 #import "ItemCell.h"
 #import "DetailPageViewController.h"
 
+/* A list view controller that displays all the items/products in the shop. This view has a nav bar button on the top right that changes with session state and reads "Log in" when logged out and "Account" when logged in. In both cases this button takes the user to the SettingsViewController. Tapping on the cells takes the user to a detailed view of the item in the cell (an `ItemDetailViewController` inside a `DetailPageViewController`). */
+
 @implementation ItemListViewController
 
 - (instancetype)init
