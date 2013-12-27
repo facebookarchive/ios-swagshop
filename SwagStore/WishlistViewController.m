@@ -111,28 +111,28 @@
   return cell;
 }
 
-// Removes an item from _allWishListItems and from the user's OG action history on Facebook
+/* Remove a product from the wishlist = remove the action associated with it from _wishlistActionsArray +
+   remove the product from _wishlistItemsArray + remove the OG story associated with that action (and product) from Facebook */
+// To remove the OG story from Facebook we need to delete the OG action connected with that OG object from the Facebook graph
 - (void)removeWishlistItemWithIndexPath:(NSIndexPath *)indexPath fromTable:(UITableView *)tableView
 {
-  
-  NSLog(@"removeWishlistItem");
-  // Remove the item from the wishlist, to do this we need to remove the OG action connected with that OG object on Facebook
-  // Obtain the FBID of the OG object associated with the item
+  // First, obtain the FBID of the OG object associated with the item
   Item *item = [_wishlistItemsArray objectAtIndex:[indexPath row]];
   NSString *productId = [item itemFBID];
-  NSLog(@"product id %@", productId);
+  NSLog(@"product id of the product to be removed: %@", productId);
   // Find the FBID of the OG action connected with that OG Object
   for (id action in _wishlistActionsArray) {
     if ([[NSString stringWithFormat:@"%@", [[[action objectForKey:@"data"] objectForKey:@"product"] objectForKey:@"id"]] isEqualToString:productId]) {
-      NSLog(@"found an item to delete");
+      NSLog(@"found an action to delete, its id is: %@", [action objectForKey:@"id"]);
       //Make an HTTP DELETE request with the OG action's FBID
       [FBRequestConnection startForDeleteObject:[action objectForKey:@"id"]
                      completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-        NSLog(@"finished request");
         if (error) {
           // An error occurred, we don't handle the error here but you should
           // more info: http://developers.facebook.com/docs/ios/errors
         } else {
+          // Deleting the action from Facebook was successful
+          // Below we do some more stuff related to removing the action from the Swag Shop UI
           // Remove the action from the wishlistActionsArray
           [_wishlistActionsArray removeObject:action];
           // Remove the object from the wishlistItemsArray
