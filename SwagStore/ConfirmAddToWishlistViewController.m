@@ -166,6 +166,7 @@
                                               parameters:@{FBAppEventParameterNameContentID:[_item itemSKU]}];
                                  } else {
                                    // Handle errors: https://developers.facebook.com/docs/ios/errors
+                                   NSLog(@"error: %@", error);
                                  }
                                }];
 }
