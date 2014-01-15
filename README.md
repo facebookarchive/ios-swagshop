@@ -23,4 +23,4 @@ Users can also view their wishlist. Making a call to the Graph API, Swag Shop re
 
 Finally, Swag Shop implements App Events to log when a product is viewed or added to someone's wishlist.
 
-The [Swag Shop tutorial](https://developers.intern.facebook.com/docs/ios/swagshop/) on the [Facebook developer website](http://developers.facebook.com) walks you through this sample.
+The [Swag Shop tutorial](https://developers.facebook.com/docs/ios/swagshop/) on the [Facebook developer website](http://developers.facebook.com/) walks you through this sample.
